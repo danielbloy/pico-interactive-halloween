@@ -16,7 +16,8 @@ WIFI_PASSWORD = "Password"
 * TODO: Note about experimental support for Raspberry Pi (3A+ and Zero 2W)
 * TODO: Note about an required upgrade to the power distribution to use normal 13 Amp cable
   and local USB connectors rather than just running 5v 2A so more power can be provided
-* TODO: Audio quality using PWM and filter is not fantastic, witch to I2S or 3A+
+* TODO: Audio quality using PWM and filter is not fantastic, switch to I2S or 3A+
+  TODO: Note the inconsistency that some properties are in `config.py` whilst others are in the code file.
 
 ## Power distribution
 
