@@ -4,7 +4,8 @@ from interactive.animation import Flicker
 from interactive.audio import AudioController
 from interactive.button import ButtonController
 from interactive.configuration import AUDIO_PIN, TRIGGER_DURATION
-from interactive.configuration import CAULDRON_PIN, TRIGGER_PIN
+from interactive.configuration import TRIGGER_PIN
+from interactive.configuration import CAULDRON_PIN, CAULDRON_COLOUR, CAULDRON_BRIGHTNESS, CAULDRON_SPEED
 from interactive.memory import setup_memory_reporting
 from interactive.polyfills.animation import BLACK, GREEN
 from interactive.polyfills.audio import new_mp3_player
@@ -13,10 +14,7 @@ from interactive.polyfills.pixel import new_pixels
 from interactive.runner import Runner
 from interactive.scheduler import new_triggered_task, Triggerable
 
-CAULDRON_BRIGHTNESS = 1.0
 CAULDRON_OFF = 0.0
-CAULDRON_SPEED = 0.03
-CAULDRON_COLOUR = GREEN
 
 # Because of memory constraints when using a Pico W CircuitPython image we do not use the
 # Interactive class here. This allows for much easier testing but also keeps the code
