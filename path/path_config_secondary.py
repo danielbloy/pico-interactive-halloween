@@ -2,13 +2,17 @@
 # This code runs on a standard Pico 2040
 import board
 
+PRIMARY_NODE = False
+
 BUTTON_PIN = board.GP26
 AUDIO_PIN = board.GP22
 ULTRASONIC_TRIGGER_PIN = board.GP17
 ULTRASONIC_ECHO_PIN = board.GP16
 
 SKULL_PINS = [board.GP5, board.GP7, board.GP9, board.GP10, board.GP8, board.GP6]
-PRIMARY_NODE = False
+SKULL_COLOUR = ORANGE
+SKULL_BRIGHTNESS = 1.0
+SKULL_SPEED = 0.1
 
 TRIGGER_PIN = board.GP0
 TRIGGER_DURATION = 40
