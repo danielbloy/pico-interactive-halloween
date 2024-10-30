@@ -5,10 +5,12 @@ from random import randint, uniform
 from interactive.audio import AudioController
 from interactive.button import ButtonController
 from interactive.configuration import BUTTON_PIN, TRIGGER_DURATION, AUDIO_PIN
+from interactive.configuration import LIGHTNING_PIN, LIGHTNING_PIXELS
 from interactive.configuration import LIGHTNING_MIN_BRIGHTNESS, LIGHTNING_MAX_BRIGHTNESS
 from interactive.configuration import LIGHTNING_MIN_FLASHES, LIGHTNING_MAX_FLASHES
 from interactive.configuration import SPIDER_PINS, SPIDER_COLOURS, SPIDER_PERIODS
-from interactive.configuration import TRIGGER_PIN, LIGHTNING_PIN
+from interactive.configuration import SPIDER_PIXELS, SPIDER_BRIGHTNESS, SPIDER_SPEED
+from interactive.configuration import TRIGGER_PIN
 from interactive.environment import is_running_on_desktop
 from interactive.log import info
 from interactive.memory import setup_memory_reporting
@@ -24,10 +26,6 @@ if is_running_on_desktop():
     pass
 
 PIXELS_OFF = 0.0
-
-SPIDER_PIXELS = 4
-SPIDER_BRIGHTNESS = 1.0
-SPIDER_SPEED = 0.1
 
 # Because of memory constraints when using a Pico W CircuitPython image we do not use the
 # Interactive class here. This allows for much easier testing but also keeps the code
@@ -78,7 +76,7 @@ trigger_events.add_event(31.00, 3)  # Trigger thunder
 # Each time the pixels are turned on, we also generate:
 # * The brightness of the flash within a min and max range.
 #
-lightning = new_pixels(LIGHTNING_PIN, 24, brightness=PIXELS_OFF)
+lightning = new_pixels(LIGHTNING_PIN, LIGHTNING_PIXELS, brightness=PIXELS_OFF)
 
 
 async def lightning_on() -> None:
