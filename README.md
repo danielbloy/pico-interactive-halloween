@@ -1,5 +1,7 @@
 # pico-interactive-halloween
 
+Please see my website [Code Club Adventures](http://codeclubadventures.com/) for more coding materials.
+
 Moved from https://github.com/danielbloy/pico-interactive/halloween/2024
 
 My daughter loves Halloween and after Halloween 2022 (she was 8 years old at the
