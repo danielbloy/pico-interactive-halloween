@@ -105,6 +105,7 @@ head but it just plays a background sound on repeat.
 
 Key planned changes:
 
+* Fixup TV and projectors to work with Raspberry Pis
 * Remove more wi-fi, using hardcoded cables instead
 * Better sensor/trigger system. Fwer false positives and quicker to act.
 * More waterproofing and bigger boxes to hold electronis
