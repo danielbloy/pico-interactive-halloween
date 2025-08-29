@@ -12,10 +12,10 @@
 # Information on moviepy was from:
 # * https://pythonprogramming.altervista.org/play-a-mp4-movie-file-with-pygame-and-moviepy/
 #
+import asyncio
 import random
 
-import pygame
-from moviepy.editor import *
+import moviepy.editor as movie
 
 from config import TRIGGER_VIDEO
 from interactive.configuration import STARTUP_VIDEO
@@ -78,8 +78,8 @@ if __name__ == '__main__':
         for event in events:
             # NOTE: Whilst a video is running, the entire runner() framework will be paused.
             info(f"Playing video {event.event} - {video_set[event.event]['file']}")
-            trigger_video = VideoFileClip(video_set[event.event]['file'])
-            trigger_video.preview()
+            trigger_video = movie.VideoFileClip(video_set[event.event]['file'])
+            trigger_video.preview(fullscreen=True)
 
 
     async def stop_display() -> None:
@@ -92,6 +92,15 @@ if __name__ == '__main__':
     runner.cancel_on_exception = False
     runner.restart_on_exception = True
     runner.restart_on_completion = False
+
+
+    # Adding this task stop Ubuntu thinking this is an unresponsive process
+    async def stop_force_wait_on_ubuntu() -> None:
+        print("running...")
+        await asyncio.sleep(1)
+
+
+    runner.add_loop_task(stop_force_wait_on_ubuntu)
 
     triggerable = Triggerable()
 
@@ -114,11 +123,9 @@ if __name__ == '__main__':
 
     # Play a startup video which prepares the screen for full sized video.
     info("Starting up...")
-    startup_video = VideoFileClip(STARTUP_VIDEO)
-    startup_video.preview()
+    startup_video = movie.VideoFileClip(STARTUP_VIDEO)
+    startup_video.preview(fullscreen=True)
     del startup_video
     info("Running...")
 
     runner.run()
-
-    pygame.quit()
