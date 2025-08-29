@@ -12,6 +12,7 @@
 # Information on moviepy was from:
 # * https://pythonprogramming.altervista.org/play-a-mp4-movie-file-with-pygame-and-moviepy/
 #
+import asyncio
 import random
 
 import moviepy.editor as movie
@@ -91,6 +92,15 @@ if __name__ == '__main__':
     runner.cancel_on_exception = False
     runner.restart_on_exception = True
     runner.restart_on_completion = False
+
+
+    # Adding this task stop Ubuntu thinking this is an unresponsive process
+    async def stop_force_wait_on_ubuntu() -> None:
+        print("running...")
+        await asyncio.sleep(1)
+
+
+    runner.add_loop_task(stop_force_wait_on_ubuntu)
 
     triggerable = Triggerable()
 
