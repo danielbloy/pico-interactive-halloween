@@ -12,7 +12,6 @@
 # Information on moviepy was from:
 # * https://pythonprogramming.altervista.org/play-a-mp4-movie-file-with-pygame-and-moviepy/
 #
-import asyncio
 import random
 
 import moviepy.editor as movie
@@ -30,6 +29,8 @@ from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedE
 if __name__ == '__main__':
 
     pygame.init()
+    pygame.mouse.set_visible(False)
+    DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
     # If a TRIGGER_VIDEO is ever specified then it overwrites TRIGGER_VIDEOS.
     # This is also a useful reference for the expected data structure.
@@ -96,15 +97,6 @@ if __name__ == '__main__':
     runner.restart_on_exception = True
     runner.restart_on_completion = False
 
-
-    # Adding this task stop Ubuntu thinking this is an unresponsive process
-    async def stop_force_wait_on_ubuntu() -> None:
-        print("running...")
-        await asyncio.sleep(1)
-
-
-    runner.add_loop_task(stop_force_wait_on_ubuntu)
-
     triggerable = Triggerable()
 
     trigger_loop = new_triggered_task(
@@ -124,13 +116,15 @@ if __name__ == '__main__':
     network_controller = NetworkController(server, network_trigger)
     network_controller.register(runner)
 
-    # Play a startup video which prepares the screen for full sized video.
-    info("Starting up...")
-    startup_video = movie.VideoFileClip(STARTUP_VIDEO)
-    startup_video.preview(fullscreen=True)
-    del startup_video
-    info("Running...")
+
+    # Adding this task to handle pygame events
+    async def pygame_event_loop() -> None:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                runner.cancel = True
+
+
+    runner.add_loop_task(pygame_event_loop)
 
     runner.run()
-
     pygame.quit()
