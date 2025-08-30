@@ -17,7 +17,7 @@ more impressive. Yes, she was happy again! The work done for 2024 was implemente
 in a fashion to make it generic and reusable for lots of projects. The full
 library is available at [pico-interactive](https://github.com/danielbloy/pico-interactive).
 
-The result of the changes during 2024 was this project which contains all the code 
+The result of the changes during 2024 was this project which contains all the code
 and 3D printer files required to build to run the installation. The ambition is
 for the installation to be different each year but to provide all the assets here,
 along with videos of the finished and working installation.
@@ -25,7 +25,7 @@ along with videos of the finished and working installation.
 These video don't quite do it justice but its good enough to get an idea
 of what the finished projects look like.
 
-Halloween 2025 [notes](./2025.md), no video yet, 
+Halloween 2025 [notes](./2025.md), no video yet,
 
 Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
 
@@ -44,6 +44,35 @@ WIFI_PASSWORD = "Password"
 
 There are some inconcistencies across the devices as some properties are in
 `config.py` whilst others are in the code file.
+
+## How to run the code
+
+For all code that is designed to run on a Raspberry Pi Pico, ensure that the device
+is running CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root
+of the
+device.
+
+For execution on a Desktop computer, the easiest way to execute the code is by using a
+Python virtual environment (either from the command-line or via PyCharm). In both
+instances, the virtual environment will need to have the `requirements.txt` installed
+and a mapping to a copy of pico-interactive](https://github.com/danielbloy/pico-interactive).
+
+The following instructions were used to setup such an environment in Ubunutu:
+
+```shell
+cd ~/repos
+git clone https://github.com/danielbloy/pico-interactive.git
+git clone https://github.com/danielbloy/pico-interactive-halloween.git
+
+cd pico-interactive-halloween
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+export PYTHONPATH=~/repos/pico-interactive
+
+cd video
+python main.py
+```
 
 ## License
 

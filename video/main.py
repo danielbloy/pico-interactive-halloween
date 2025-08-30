@@ -16,6 +16,7 @@ import asyncio
 import random
 
 import moviepy.editor as movie
+import pygame
 
 from config import TRIGGER_VIDEO
 from interactive.configuration import STARTUP_VIDEO
@@ -27,6 +28,8 @@ from interactive.runner import Runner
 from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedEvents
 
 if __name__ == '__main__':
+
+    pygame.init()
 
     # If a TRIGGER_VIDEO is ever specified then it overwrites TRIGGER_VIDEOS.
     # This is also a useful reference for the expected data structure.
@@ -129,3 +132,5 @@ if __name__ == '__main__':
     info("Running...")
 
     runner.run()
+
+    pygame.quit()
