@@ -42,20 +42,25 @@ WIFI_SSID = "<WIFI>"
 WIFI_PASSWORD = "Password"
 ```
 
-There are some inconcistencies across the devices as some properties are in
-`config.py` whilst others are in the code file.
+Please be aware that there ae some inconsistencies about where settings are stored.
+This is in part due to the age differences of some of the materials as well as well
+as "how quickly" others have had to be put together. Therefore there is some
+inconsistency as some properties are in `config.py` whilst others are in the code files
+themselves. It's usually obvious where the settings are or need to be.
 
 ## How to run the code
 
 For all code that is designed to run on a Raspberry Pi Pico, ensure that the device
-is running CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root
-of the
+is running CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root of the
 device.
 
 For execution on a Desktop computer, the easiest way to execute the code is by using a
 Python virtual environment (either from the command-line or via PyCharm). In both
 instances, the virtual environment will need to have the `requirements.txt` installed
 and a mapping to a copy of pico-interactive](https://github.com/danielbloy/pico-interactive).
+
+If running from PyCharm, setup a virtual environment and add `pico-interactive` as an
+additional content root from `File` -> `Settings` -> `Project Structure`.
 
 The following instructions were used to setup such an environment in Ubunutu:
 
