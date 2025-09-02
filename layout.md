@@ -13,3 +13,25 @@ the display area so all installations do not necessarily use all `zones`.
 * Small bedroom, above triangle flower bed, left of path
 * Shingle drive, left of triangle flower bed
 * Cabin, back of shingle drive.
+
+The floor plan looks like this (not to scale):
+
+```
+        Small Bedroom   Door     Large Bedroom
+                      |      |       Lounge
+          ------------+      |
+< Cabin       Path           |
+          +-----------+      +--------------------+
+          |           |      |                    | 
+           | Triangle |      |                    |
+            |  Flower |      |                    |
+             |    Bed |      |       Square       |
+              |       |      |       Shingle      |
+               |      | Path |                    |
+    Gravel      |     |      |                    |
+     Drive       |    |      |                    |
+                  |   |      |                    |
+                   |  |      |                    |
+                    | |      |                    |
+                     ++      +--------------------+
+```
