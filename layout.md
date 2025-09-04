@@ -16,7 +16,7 @@ the display area so all installations do not necessarily use all `zones`.
 
 The floor plan looks like this (not to scale):
 
-```
+```text
         Small Bedroom   Door     Large Bedroom
                       |      |       Lounge
           ------------+      |
