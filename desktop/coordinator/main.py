@@ -1,4 +1,4 @@
-# This is designed to run on a PC and perform the multi-node coordination.
+# This is designed to run on a desktop computer and perform the multi-node coordination.
 #
 # The Eyes are displayed on the TV on the 1st floor and are kicked off on repeat
 # even when the trigger is not activated. The eyes act as an attract to the house.

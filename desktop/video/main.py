@@ -1,6 +1,6 @@
-# This is designed to run on a PC and perform the display of set of videos. Each time
-# the application is triggered, the set of videos to play will be randomly selected
-# from the configuration data based on weight. A video set consists of a list of
+# This is designed to run on a desktop computer and perform the display of set of videos.
+# Each time the application is triggered, the set of videos to play will be randomly
+# selected from the configuration data based on weight. A video set consists of a list of
 # videos to play and the timing intervals to play them at.
 #
 # When the application starts up, it will play the configured STARTUP_VIDEO which will
