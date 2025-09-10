@@ -3,21 +3,14 @@
 # selected from the configuration data based on weight. A audio set consists of a list of
 # sound files to play and the timing intervals to play them at.
 #
-# When the application starts up, it will play the configured STARTUP_VIDEO which will
-# prepare the pygame window in full screen mode.
-#
 # A simplified TRIGGER_AUDIO value dispenses with the more complex TRIGGER_AUDIO and
 # simply overwrites it so that only a single sound clip is played.
 #
 import random
 
-import moviepy.editor as movie
 import pygame
 
-from threading import Thread
-
 from config import TRIGGER_AUDIO
-from interactive.configuration import STARTUP_VIDEO
 from interactive.configuration import TRIGGER_DURATION, TRIGGER_AUDIOS
 from interactive.log import info
 from interactive.network import NetworkController
@@ -28,15 +21,7 @@ from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedE
 if __name__ == '__main__':
 
     pygame.init()
-
-    file = '../audio/witch-thumbs.mp3'
-    pygame.init()
     pygame.mixer.init()
-    pygame.mixer.music.load(file)
-
-
-    pygame.mouse.set_visible(False)
-    DISPLAYSURF = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
     # If a TRIGGER_AUDIO is ever specified then it overwrites TRIGGER_AUDIOS.
     # This is also a useful reference for the expected data structure.
@@ -86,18 +71,9 @@ if __name__ == '__main__':
         events = trigger_events.run()
 
         for event in events:
-
-            def threaded_function():
-                info(f"Playing audio {event.event} - {audio_set[event.event]['file']}")
-                pygame.mixer.music.play()
-                while pygame.mixer.music.get_busy():
-                    pass
-                info(f"Finished triggering audio")
-
-            info(f"Starting threads")
-            thread = Thread(target=threaded_function, args=())
-            thread.start()
-            info(f"Finishing threads")
+            info(f"Playing audio {event.event} - {audio_set[event.event]['file']}")
+            pygame.mixer.music.load(audio_set[event.event]['file'])
+            pygame.mixer.music.play()
 
 
     async def stop_display() -> None:

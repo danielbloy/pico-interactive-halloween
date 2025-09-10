@@ -3,9 +3,6 @@
 # selected from the configuration data based on weight. A video set consists of a list of
 # videos to play and the timing intervals to play them at.
 #
-# When the application starts up, it will play the configured STARTUP_VIDEO which will
-# prepare the pygame window in full screen mode.
-#
 # A simplified TRIGGER_VIDEO value dispenses with the more complex TRIGGER_VIDEOS and
 # simply overwrites it so that only a single video is played.
 #
@@ -18,7 +15,6 @@ import moviepy.editor as movie
 import pygame
 
 from config import TRIGGER_VIDEO
-from interactive.configuration import STARTUP_VIDEO
 from interactive.configuration import TRIGGER_DURATION, TRIGGER_VIDEOS
 from interactive.log import info
 from interactive.network import NetworkController
