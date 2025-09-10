@@ -48,6 +48,12 @@ as "how quickly" others have had to be put together. Therefore there is some
 inconsistency as some properties are in `config.py` whilst others are in the code files
 themselves. It's usually obvious where the settings are or need to be.
 
+# Structure of the code
+
+Code/nodes that need to run on desktop computers such as Raspberry Pis or laptops can
+be found in the desktop directory. Code that is designed to run microcontroller based
+nodes can be found in microcontroller.
+
 ## How to run the code
 
 For all code that is designed to run on a Raspberry Pi Pico, ensure that the device
@@ -75,7 +81,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 export PYTHONPATH=~/repos/pico-interactive
 
-cd video
+cd desktop/video
 python main.py
 ```
 
