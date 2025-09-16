@@ -57,7 +57,8 @@ nodes can be found in microcontroller.
 ## How to run the code
 
 For all code that is designed to run on a Raspberry Pi Pico, ensure that the device
-is running CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root of the
+is running CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root
+of the
 device.
 
 For execution on a Desktop computer, the easiest way to execute the code is by using a
@@ -76,14 +77,31 @@ git clone https://github.com/danielbloy/pico-interactive.git
 git clone https://github.com/danielbloy/pico-interactive-halloween.git
 
 cd pico-interactive-halloween
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv video_venv
+source video_venv/bin/activate
 pip install -r requirements.txt
 export PYTHONPATH=~/repos/pico-interactive
 
 cd desktop/video
 python main.py
 ```
+
+On Windows from a command-line, use the following alternative commands:
+
+```shell
+cd C:\Workspace\repos
+git clone https://github.com/danielbloy/pico-interactive.git
+git clone https://github.com/danielbloy/pico-interactive-halloween.git
+
+cd pico-interactive-halloween
+python -m venv audio_venv
+audio_env\scripts\activate  
+pip install -r requirements.txt
+set PYTHONPATH=C:\Workspace\repos\pico-interactive
+
+cd desktop/audio
+python main.py
+````
 
 ## License
 

@@ -1,10 +1,9 @@
 TRIGGER_DURATION = 40
 
-STARTUP_VIDEO = "startup.mp4"
 # When set to a value, TRIGGER_VIDEO overrides TRIGGER_VIDEOS and
 # allows for a simple method to simply display a single video. To
 # use the more powerful TRIGGER_VIDEOS, set TRIGGER_VIDEO to None.
-TRIGGER_VIDEO = "skeleton.mp4"
+TRIGGER_VIDEO = "dragon_eyes_large_no_sound.mp4"
 # TRIGGER_VIDEO = None
 
 TRIGGER_VIDEOS = [
