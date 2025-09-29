@@ -3,6 +3,8 @@
 # of the fire effect so as the dragon make more noise, the flames will get
 # brighter and vice versa.
 
+import random
+
 import board
 
 from interactive.button import ButtonController
@@ -42,22 +44,21 @@ from adafruit_pixel_framebuf import PixelFramebuffer, VERTICAL
 
 # Colours are in GRB form
 RED = 0x00_FF_00
-DARK_ORANGE = 0x5B_FF_00
 ORANGE = 0x45_FF_00
-BRIGHT_ORANGE = 0xA5_FF_00
 YELLOW = 0xFF_FF_00
 OFF = 0x000000
-BAND_1 = RED
-BAND_2 = DARK_ORANGE
-BAND_3 = ORANGE
-BAND_4 = BRIGHT_ORANGE
-BAND_5 = YELLOW
+BAND_1 = 0x00_FF_00
+BAND_2 = 0x04_FF_00
+BAND_3 = 0x08_FF_00
+BAND_4 = 0x10_FF_00
+BAND_5 = 0x18_FF_00
 
 WIDTH = 20
 HEIGHT = 20
-FRAME_RATE = 5
+FRAME_RATE = 8
+SENSITIVITY_FACTOR = 1.5
 
-pixels = new_pixels(PIXELS_PIN, WIDTH * HEIGHT, brightness=0.5)
+pixels = new_pixels(PIXELS_PIN, WIDTH * HEIGHT, brightness=1.0)
 
 display = PixelFramebuffer(
     pixels,
@@ -74,16 +75,22 @@ microphone = Microphone(MICROPHONE_PIN)
 microphone_controller = MicrophoneController(microphone, frequency=FRAME_RATE)
 microphone_controller.register(runner)
 
-SENSITIVITY_FACTOR = 10
-
 
 def display_sound_as_bar_chart(minimum, maximum, bar_height: int):
     # Just report amplitude along the bottom of the screen to a maximum height.
-    display.scroll(-1, 0)
+    display.scroll(-2, 0)
 
     amplitude = maximum - minimum
     divisor = (microphone.max / bar_height) / SENSITIVITY_FACTOR
     height = min(int(amplitude / divisor), bar_height)
+    # Set a minimum height
+    height = max(height, 1)
+
+    # Set a maximum height
+    height = min(height, 16)
+
+    # Add a random element
+    height += random.randint(0, 4)
 
     # Start with default colours for the bar and then blank out those that we don't need.
     colours = [
