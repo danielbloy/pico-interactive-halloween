@@ -41,14 +41,17 @@ button_controller.register(runner)
 from adafruit_pixel_framebuf import PixelFramebuffer, VERTICAL
 
 # Colours are in GRB form
-GREEN = 0xFF_00_00
-YELLOW = 0xFF_FF_00
-ORANGE = 0x45_FF_00
 RED = 0x00_FF_00
-BLUE = 0x00_00_FF
-WHITE = 0xFF_FF_FF
-LIGHT_BLUE = 0xD2_7C_C8  # RGB: 7C D2 C8 -> GRB: D2 7C C8
+DARK_ORANGE = 0x5B_FF_00
+ORANGE = 0x45_FF_00
+BRIGHT_ORANGE = 0xA5_FF_00
+YELLOW = 0xFF_FF_00
 OFF = 0x000000
+BAND_1 = RED
+BAND_2 = DARK_ORANGE
+BAND_3 = ORANGE
+BAND_4 = BRIGHT_ORANGE
+BAND_5 = YELLOW
 
 WIDTH = 20
 HEIGHT = 20
@@ -83,10 +86,12 @@ def display_sound_as_bar_chart(minimum, maximum, bar_height: int):
     height = min(int(amplitude / divisor), bar_height)
 
     # Start with default colours for the bar and then blank out those that we don't need.
-    colours = [GREEN, GREEN, GREEN, YELLOW, YELLOW, YELLOW, ORANGE, ORANGE, RED, RED]
-    if bar_height > 10:
-        colours = [GREEN, GREEN, GREEN, GREEN, GREEN, YELLOW, YELLOW, YELLOW, YELLOW, YELLOW, ORANGE, ORANGE, ORANGE,
-                   ORANGE, ORANGE, RED, RED, RED, RED, RED]
+    colours = [
+        BAND_1, BAND_1, BAND_1, BAND_1,
+        BAND_2, BAND_2, BAND_2, BAND_2,
+        BAND_3, BAND_3, BAND_3, BAND_3,
+        BAND_4, BAND_4, BAND_4, BAND_4,
+        BAND_5, BAND_5, BAND_5, BAND_5]
 
     for idx in range(bar_height - height):
         colours[bar_height - idx - 1] = OFF
@@ -96,13 +101,7 @@ def display_sound_as_bar_chart(minimum, maximum, bar_height: int):
 
 
 async def draw_screen(minimum, maximum: int) -> None:
-    amplitude = maximum - minimum
-    divisor = (microphone.max / 100) / SENSITIVITY_FACTOR
-    height = min(int(amplitude / divisor), 100)
-    alert_mode = height >= 80
-
     display_sound_as_bar_chart(minimum, maximum, HEIGHT)
-
     display.display()
 
 
