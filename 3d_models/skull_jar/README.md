@@ -41,7 +41,7 @@ extended downwards. There needs to be enough space between the jar lid and the N
 to connect everything up so I experimented with different heihgts and settled on a lowish profile
 that did not extend too far below the top of the skull jar.
 
-![image](.//Neopixel_ring_holder_57mm_clip.png)
+![image](./Neopixel_ring_holder_57mm_clip.png)
 
 This clip was then attached to the jar lid to make a single model that can be printed.
 
@@ -60,6 +60,18 @@ For simplicity, you can cut the output connector off the Neopixel ring and use t
 but as I wanted to reuse my Neopixel rings for other projects, I bought some extra
 connectors.
 
+## Skull Mount
+
+In previous years, the skulls have been laid out on the path. This unfortunately means they
+sometimes get knocked over by enthusiastic children. To address this, for 2025 I designed a
+simple mount that the skull goes in which can then be placed in the borders which are either
+side of the path. The mount has 2 pieces that are 3D printed separately and connected together
+via 3mm nuts and bolts. The bottom of the mount has a connector that accepts a tube with a 21mm
+outside diameter (I used [these from Amazon](https://www.amazon.co.uk/dp/B0BLCFMSPG?th=1)).
+It's a very simple system and the tubes can be cut to length but is effective.
+
+![image](./Skull%20Mount.png)
+
 ## All 3D model files
 
 * [Mason Jar with 12mm hole](./Mason_jar_12mm_hole.stl)
@@ -67,6 +79,7 @@ connectors.
 * [Neopixel ring clip, taller](./Neopixel_ring_holder_52mm_base_tall.stl)
 * [Neopixel clip holder](./Neopixel_ring_holder_57mm_clip.stl)
 * [Mason jar with Neopixel clip holder](./Mason_jar_id_with_57mm_clip.stl)
+* [Skull Mount](./Skull%20Mount.stl)
 
 ## Bill of materials
 
@@ -81,3 +94,5 @@ You will need to purchase enough items to build all 12 skulls.
 * [JST SM connectors](https://www.amazon.co.uk/gp/product/B07K2L814N)
 * [Mason jar with Neopixel clip holder](./Mason_jar_id_with_57mm_clip.stl)
 * [Neopixel ring clip, normal](./Neopixel_ring_holder_52mm_base.stl)
+* [Skull Mount](./Skull%20Mount.stl)
+* [21 mm outside diameter tube](https://www.amazon.co.uk/dp/B0BLCFMSPG?th=1)
