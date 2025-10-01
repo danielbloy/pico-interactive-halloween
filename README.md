@@ -42,8 +42,17 @@ WIFI_SSID = "<WIFI>"
 WIFI_PASSWORD = "Password"
 ```
 
-There are some inconcistencies across the devices as some properties are in
-`config.py` whilst others are in the code file.
+Please be aware that there ae some inconsistencies about where settings are stored.
+This is in part due to the age differences of some of the materials as well as well
+as "how quickly" others have had to be put together. Therefore there is some
+inconsistency as some properties are in `config.py` whilst others are in the code files
+themselves. It's usually obvious where the settings are or need to be.
+
+# Structure of the code
+
+Code/nodes that need to run on desktop computers such as Raspberry Pis or laptops can
+be found in the desktop directory. Code that is designed to run microcontroller based
+nodes can be found in microcontroller.
 
 ## How to run the code
 
@@ -57,6 +66,9 @@ Python virtual environment (either from the command-line or via PyCharm). In bot
 instances, the virtual environment will need to have the `requirements.txt` installed
 and a mapping to a copy of pico-interactive](https://github.com/danielbloy/pico-interactive).
 
+If running from PyCharm, setup a virtual environment and add `pico-interactive` as an
+additional content root from `File` -> `Settings` -> `Project Structure`.
+
 The following instructions were used to setup such an environment in Ubunutu:
 
 ```shell
@@ -65,14 +77,31 @@ git clone https://github.com/danielbloy/pico-interactive.git
 git clone https://github.com/danielbloy/pico-interactive-halloween.git
 
 cd pico-interactive-halloween
-python3 -m venv venv
-source venv/bin/activate
+python3 -m venv video_venv
+source video_venv/bin/activate
 pip install -r requirements.txt
 export PYTHONPATH=~/repos/pico-interactive
 
-cd video
+cd desktop/video
 python main.py
 ```
+
+On Windows from a command-line, use the following alternative commands:
+
+```shell
+cd C:\Workspace\repos
+git clone https://github.com/danielbloy/pico-interactive.git
+git clone https://github.com/danielbloy/pico-interactive-halloween.git
+
+cd pico-interactive-halloween
+python -m venv audio_venv
+audio_env\scripts\activate  
+pip install -r requirements.txt
+set PYTHONPATH=C:\Workspace\repos\pico-interactive
+
+cd desktop/audio
+python main.py
+````
 
 ## License
 
