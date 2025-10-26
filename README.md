@@ -99,7 +99,27 @@ audio_venv\scripts\activate
 pip install -r requirements.txt
 set PYTHONPATH=C:\Workspace\repos\pico-interactive
 
-cd desktop/audio
+cd desktop\audio
+python main.py
+````
+
+On Windows from a command-line, use the following commands to execute the
+audio and video programs on the Dragon node (make sure `pico-interactive2`
+has the configuration changed to be on port 5002 rather than 5001):
+
+```shell
+cd C:\Workspace\repos\pico-interactive-halloween
+audio_venv\scripts\activate  
+set PYTHONPATH=C:\Workspace\repos\pico-interactive
+cd desktop\audio
+python main.py
+````
+
+```shell
+cd C:\Workspace\repos\pico-interactive-halloween
+video_venv\scripts\activate  
+set PYTHONPATH=C:\Workspace\repos\pico-interactive
+cd desktop\video
 python main.py
 ````
 
