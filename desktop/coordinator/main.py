@@ -5,7 +5,7 @@
 #
 import asyncio
 
-from interactive.configuration import EYES_DURATION, TRIGGER_DURATION
+from interactive.configuration import EYES_DURATION, ROAR_DURATION, TRIGGER_DURATION
 from interactive.log import info
 from interactive.network import NetworkController, send_message
 from interactive.polyfills.network import new_server
@@ -39,15 +39,23 @@ if __name__ == '__main__':
     runner.restart_on_completion = False
 
 
-    # Trigger the eyes on repeat.
+    # Trigger the eyes and roar on repeat.
     async def trigger_eyes() -> None:
         asyncio.create_task(trigger_node(EYES))
 
+    async def trigger_roar() -> None:
+        asyncio.create_task(trigger_node(ROAR))
 
     runner.add_task(
         new_scheduled_task(
             trigger_eyes,
             frequency=1 / EYES_DURATION,
+        ))
+
+    runner.add_task(
+        new_scheduled_task(
+            trigger_roar,
+            frequency=1 / ROAR_DURATION,
         ))
 
     trigger_events = TriggerTimedEvents()

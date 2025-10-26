@@ -10,29 +10,33 @@ TRIGGER_AUDIOS = [
     {
         'weight': 1,
         'audios': [
-            {'time': 4, 'file': '../../audio/dragon.mp3'}
-        ]
-    },
-    {
-        'weight': 3,
-        'audios': [
-            {'time': 0.5, 'file': '../../audio/witch-thumbs.mp3'},
-            {'time': 7, 'file': '../../audio/bubbling.mp3'}
+            {'time': 0, 'file': '../../audio/dragon/dragon-1.mp3'}
         ]
     },
     {
         'weight': 1,
         'audios': [
-            {'time': 1.4, 'file': '../../audio/witch-laugh.mp3'},
-            {'time': 7, 'file': '../../audio/lion.mp3'}
+            {'time': 0, 'file': '../../audio/dragon/dragon-2.mp3'}
         ]
     },
     {
         'weight': 1,
         'audios': [
-            {'time': 0, 'file': '../../audio/lion.mp3'},
+            {'time': 0, 'file': '../../audio/dragon/dragon-3.mp3'}
         ]
-    }
+    },
+    {
+        'weight': 1,
+        'audios': [
+            {'time': 0, 'file': '../../audio/dragon/dragon-4.mp3'}
+        ]
+    },
+    {
+        'weight': 1,
+        'audios': [
+            {'time': 0, 'file': '../../audio/dragon/dragon-5.mp3'}
+        ]
+    },
 ]
 
 from interactive.log import INFO

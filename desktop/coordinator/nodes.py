@@ -22,6 +22,7 @@ PROJECTOR = "192.168.1.248:5001"
 
 # TV displaying eyes: Medion laptop
 EYES = "192.168.1.76:5001"
+ROAR = "192.168.1.76:5002"
 
 # Acer ubuntu laptop
 ACER = "192.168.1.194:5001"
