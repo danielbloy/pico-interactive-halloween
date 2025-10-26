@@ -110,7 +110,7 @@ has the configuration changed to be on port 5002 rather than 5001):
 ```shell
 cd C:\Workspace\repos\pico-interactive-halloween
 audio_venv\scripts\activate  
-set PYTHONPATH=C:\Workspace\repos\pico-interactive
+set PYTHONPATH=C:\Workspace\repos\pico-interactive2
 cd desktop\audio
 python main.py
 ````
