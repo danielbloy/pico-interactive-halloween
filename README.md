@@ -95,7 +95,7 @@ git clone https://github.com/danielbloy/pico-interactive-halloween.git
 
 cd pico-interactive-halloween
 python -m venv audio_venv
-audio_env\scripts\activate  
+audio_venv\scripts\activate  
 pip install -r requirements.txt
 set PYTHONPATH=C:\Workspace\repos\pico-interactive
 
