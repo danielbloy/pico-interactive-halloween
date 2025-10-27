@@ -48,7 +48,7 @@ as "how quickly" others have had to be put together. Therefore there is some
 inconsistency as some properties are in `config.py` whilst others are in the code files
 themselves. It's usually obvious where the settings are or need to be.
 
-# Structure of the code
+## Structure of the code
 
 Code/nodes that need to run on desktop computers such as Raspberry Pis or laptops can
 be found in the desktop directory. Code that is designed to run microcontroller based
@@ -57,19 +57,19 @@ nodes can be found in microcontroller.
 ## How to run the code
 
 For all code that is designed to run on a Raspberry Pi Pico, ensure that the device
-is running CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root
-of the
-device.
+is running CircuitPython and has
+[pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the
+root of the device.
 
 For execution on a Desktop computer, the easiest way to execute the code is by using a
 Python virtual environment (either from the command-line or via PyCharm). In both
 instances, the virtual environment will need to have the `requirements.txt` installed
-and a mapping to a copy of pico-interactive](https://github.com/danielbloy/pico-interactive).
+and a mapping to a copy of [pico-interactive](https://github.com/danielbloy/pico-interactive).
 
 If running from PyCharm, setup a virtual environment and add `pico-interactive` as an
 additional content root from `File` -> `Settings` -> `Project Structure`.
 
-The following instructions were used to setup such an environment in Ubunutu:
+The following instructions were used to setup such an environment in Ubuntu:
 
 ```shell
 cd ~/repos
@@ -101,11 +101,52 @@ set PYTHONPATH=C:\Workspace\repos\pico-interactive
 
 cd desktop\audio
 python main.py
-````
+```
 
-On Windows from a command-line, use the following commands to execute the
-audio and video programs on the Dragon node (make sure `pico-interactive2`
-has the configuration changed to be on port 5002 rather than 5001):
+### Specific node running instructions
+
+#### Coordinator, back bedroom, Acer Ubuntu laptop
+
+It is easiest to run the Python code using PyCharm.
+
+Because the coordinator node periodically sends trigger messages to the Dragon
+node, if the Dragon node is not running, there will be errors reported in the
+coordinator nodes console output. This is fine and will not affect the running
+operation of the node. Similarly, if any of the other nodes are missing, when
+the coordinator node triggers, errors will be reported for each node that is not
+online. Again, this is fine.
+
+The coordinator node needs one copy of `pico-interactive-halloween` and one
+copy of `pico-interactive`.
+
+Open the `pico-interactive-halloween` project in PyCharm and create a new
+a virtual environment if one does not already exist; `File` -> `Settings`
+-> `Python` -> `Interpreter`. Remeber to install the `requirements.txt`
+
+Then add `pico-interactive` as an additional content root from `File` ->
+`Settings` -> `Project Structure`.
+
+### Projector, lounge, Lenovo Windows laptop
+
+It is easiest to run the Python code using PyCharm.
+
+The Lenovo laptop is a Windows based laptop that runs the video in the lounge.
+The easiest way to set this up is to follow the same instructions as for the
+Acer Ubuntu laptop that is running the coordinator code.
+
+#### Dragon, bedroom, Medion Windows laptop
+
+This is run on the Medion laptop which runs Windows. It needs one copy of
+`pico-interactive-halloween` and two copies of `pico-interactive`. One copy
+of `pico-interactive` should be vanilla whilst the second copy should have
+the variable `NETWORK_PORT_DESKTOP` changed from 5001 to 5002 in the file
+`interactive/control.py`. This is because we run two python scripts as the
+on the machine, one for the eyes (video) and one for the roaring (audio).
+
+On Windows from two command-line windows, use the following commands to
+execute the audio and video programs on the Dragon node (make sure
+`pico-interactive2` has the configuration changed to be on port 5002 rather
+than 5001):
 
 ```shell
 cd C:\Workspace\repos\pico-interactive-halloween
