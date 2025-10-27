@@ -134,6 +134,11 @@ The Lenovo laptop is a Windows based laptop that runs the video in the lounge.
 The easiest way to set this up is to follow the same instructions as for the
 Acer Ubuntu laptop that is running the coordinator code.
 
+Replace the contents of `desktop\video\config.py` with those from
+`desktop\video\projector_config.py`.
+
+Copy the videos that are to be played into `\desktop\video`.
+
 #### Dragon, bedroom, Medion Windows laptop
 
 This is run on the Medion laptop which runs Windows. It needs one copy of
@@ -142,6 +147,13 @@ of `pico-interactive` should be vanilla whilst the second copy should have
 the variable `NETWORK_PORT_DESKTOP` changed from 5001 to 5002 in the file
 `interactive/control.py`. This is because we run two python scripts as the
 on the machine, one for the eyes (video) and one for the roaring (audio).
+
+Replace the contents of `desktop\video\config.py` with those from
+`desktop\video\eyes_config.py`.
+
+Copy the videos that are to be played into `\desktop\video`.
+
+The audio files are stored alongside the source code so do not need copying.
 
 On Windows from two command-line windows, use the following commands to
 execute the audio and video programs on the Dragon node (make sure
