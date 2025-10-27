@@ -4,10 +4,10 @@ from interactive.animation import Flicker
 from interactive.audio import AudioController
 from interactive.button import ButtonController
 from interactive.configuration import AUDIO_PIN, TRIGGER_DURATION
-from interactive.configuration import TRIGGER_PIN
 from interactive.configuration import CAULDRON_PIN, CAULDRON_COLOUR, CAULDRON_BRIGHTNESS, CAULDRON_SPEED
+from interactive.configuration import TRIGGER_PIN
 from interactive.memory import setup_memory_reporting
-from interactive.polyfills.animation import BLACK, ORANGE
+from interactive.polyfills.animation import BLACK
 from interactive.polyfills.audio import new_mp3_player
 from interactive.polyfills.button import new_button
 from interactive.polyfills.pixel import new_pixels
@@ -34,9 +34,11 @@ audio_controller.register(runner)
 
 # The event is the skull index to enable
 trigger_events = TriggerTimedEvents()
-trigger_events.add_event(05.0, 0)
-trigger_events.add_event(15.0, 1)
-trigger_events.add_event(25.0, 0)
+trigger_events.add_event(0.0, 0)
+trigger_events.add_event(7.0, 2)
+trigger_events.add_event(14.0, 3)
+trigger_events.add_event(21.0, 4)
+trigger_events.add_event(28.0, 1)
 trigger_events.add_event(35.0, 0)
 
 
@@ -54,11 +56,32 @@ async def run_display() -> None:
     events = trigger_events.run()
 
     for event in events:
+        import random
+        pick = random.randint(0, 2)
+
         if event.event == 0:
             audio_controller.queue("witch-laugh.mp3")
 
         elif event.event == 1:
             audio_controller.queue("witch-thumbs.mp3")
+
+        elif event.event == 2:
+            if pick == 0:
+                audio_controller.queue("you_look_so_interesting.mp3")
+            else:
+                audio_controller.queue("aww_you_look_so_good.mp3")
+
+        elif event.event == 3:
+            if pick == 0:
+                audio_controller.queue("are_you_afraid_my_dear.mp3")
+            else:
+                audio_controller.queue("are_you_afraid_of_the_dark_my_dear.mp3")
+
+        elif event.event == 4:
+            if pick == 0:
+                audio_controller.queue("did_you_run_away_from_home.mp3")
+            else:
+                audio_controller.queue("laugh_i_will_find_you.mp3")
 
 
 async def stop_display() -> None:
