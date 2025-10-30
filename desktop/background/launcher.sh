@@ -1,4 +1,4 @@
-cd ~/pico-interactive-halloween
+cd /home/daniel/pico-interactive-halloween
 source audio_venv/bin/activate
 export PYTHONPATH=~/pico-interactive
 cd desktop/background
