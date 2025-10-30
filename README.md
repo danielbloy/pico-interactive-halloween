@@ -22,10 +22,10 @@ and 3D printer files required to build to run the installation. The ambition is
 for the installation to be different each year but to provide all the assets here,
 along with videos of the finished and working installation.
 
-These video don't quite do it justice but its good enough to get an idea
+These videos don't quite do it justice but its good enough to get an idea
 of what the finished projects look like.
 
-Halloween 2025 [notes](./2025.md), no video yet,
+Halloween 2025 [notes](./2025.md), [pictures](2025/overview.md), no video yet,
 
 Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
 
