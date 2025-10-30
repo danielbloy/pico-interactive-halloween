@@ -35,9 +35,9 @@ if __name__ == '__main__':
             }
         ]
 
-    # For each entry in TRIGGER_AUDIOS, this list will contain its index the number
-    # of times weight is specified. This allows us to randomly select a audio based
-    # on a weighting.
+    # For each entry in TRIGGER_AUDIOS, this list will contain the number
+    # of times weight is specified. This allows us to randomly select a
+    # audio based on a weighting.
     audio_selector = []
     for idx, audio_set_details in enumerate(TRIGGER_AUDIOS):
         for i in range(audio_set_details['weight']):
