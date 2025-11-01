@@ -27,10 +27,21 @@ machine, projectors and thunder and lightning effects installed.
 
 ## Day 2 - Friday 31st October
 
+This shows the gazebo on the drive which is being converted
+into the witches house. The weather was not playing nice with
+quite high gusts of wind. This meant I had to spend a lot of
+time with extra ropes, weights and supports.
+
 ![Day 2 - Image 1](day_2_1.jpg)
 
 ![Day 2 - Image 2](day_2_2.jpg)
 
+Close up of Mr Bones toasting marshmallows on the fire prop
+that I made for the school play earlier this year.
+
 ![Day 2 - Image 3](day_2_3.jpg)
+
+The big mess of wires that is the main controller unit for
+the right hand side of the path.
 
 ![Day 2 - Image 4](day_2_4.jpg)
