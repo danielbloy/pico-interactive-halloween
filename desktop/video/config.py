@@ -1,39 +1,56 @@
-TRIGGER_DURATION = 40
+TRIGGER_DURATION = 140
 
-# When set to a value, TRIGGER_VIDEO overrides TRIGGER_VIDEOS and
-# allows for a simple method to simply display a single video. To
-# use the more powerful TRIGGER_VIDEOS, set TRIGGER_VIDEO to None.
-TRIGGER_VIDEO = "dragon_eyes_large_no_sound.mp4"
-# TRIGGER_VIDEO = None
-
+STARTUP_VIDEO = "startup.mp4"
+TRIGGER_VIDEO = None
 TRIGGER_VIDEOS = [
     {
         'weight': 1,
         'videos': [
-            {'time': 10.2, 'file': 'scare-death.mp4'}
+            {'time': 0, 'file': 'bone_chiller_dance.mp4'}
         ]
     },
     {
         'weight': 1,
         'videos': [
-            {'time': 0.5, 'file': 'scare-siren.mp4'},
-            {'time': 25, 'file': 'scare-poltergeist.mp4'}
+            {'time': 0, 'file': 'boneyard_bop.mp4'}
         ]
     },
     {
         'weight': 1,
         'videos': [
-            {'time': 1.4, 'file': 'scare-spinster.mp4'},
-            {'time': 20, 'file': 'scare-wraith.mp4'}
+            {'time': 0, 'file': 'chiller_dance.mp4'}
         ]
     },
     {
-        'weight': 3,
+        'weight': 1,
         'videos': [
-            {'time': 0.5, 'file': 'marley.mp4'},
-            {'time': 24, 'file': 'skeleton.mp4'}
+            {'time': 0, 'file': 'dancing_dead.mp4'}
         ]
-    }
+    },
+    {
+        'weight': 1,
+        'videos': [
+            {'time': 0, 'file': 'eyes.mp4'}
+        ]
+    },
+    {
+        'weight': 1,
+        'videos': [
+            {'time': 0, 'file': 'ghosts_on_parade.mp4'}
+        ]
+    },
+    {
+        'weight': 1,
+        'videos': [
+            {'time': 0, 'file': 'numskulls.mp4'}
+        ]
+    },
+    {
+        'weight': 1,
+        'videos': [
+            {'time': 0, 'file': 'shock_and_roll.mp4'}
+        ]
+    },
 ]
 
 from interactive.log import INFO

@@ -24,3 +24,13 @@ the spiders have been put out but tomorrow will see the smoke
 machine, projectors and thunder and lightning effects installed.
 
 ![Day 1 - Image 3](day_1_3.jpg)
+
+## Day 2 - Friday 31st October
+
+![Day 2 - Image 1](day_2_1.jpg)
+
+![Day 2 - Image 2](day_2_2.jpg)
+
+![Day 2 - Image 3](day_2_3.jpg)
+
+![Day 2 - Image 4](day_2_4.jpg)
