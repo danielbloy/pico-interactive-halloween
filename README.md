@@ -4,6 +4,17 @@ Please see my website [Code Club Adventures](http://codeclubadventures.com/) for
 
 This project has been moved from https://github.com/danielbloy/pico-interactive/halloween/2024
 
+These videos don't quite do it justice but are good enough to get an idea
+of what the finished halloween projects look like.
+
+Halloween 2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
+
+Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
+
+Halloween 2023 [video on YouTube](https://youtu.be/a0I0U5x334Y), the full code for Halloween 2023 can be
+found at https://github.com/danielbloy/pico-interactive-origins.
+
+
 My daughter loves Halloween and after Halloween 2022 (she was 8 years old at the
 time) we discussed using some of the electronics that I use in my Coding Clubs to
 make our house more interactive with sounds and lights. I agreed to this because
@@ -22,17 +33,19 @@ and 3D printer files required to build to run the installation. The ambition is
 for the installation to be different each year but to provide all the assets here,
 along with videos of the finished and working installation.
 
-These videos don't quite do it justice but its good enough to get an idea
-of what the finished projects look like.
+Whilst [pico-interactive](https://github.com/danielbloy/pico-interactive) works
+great, it is a rather hungry framework in terms of RAM and this meant the new nodes
+for 2024 still had to have two microcontrollers in them (the Pico 2 was very new
+at the time and did not have CircuitPython support in time for me to upgrade). To
+solve the resource issues, I started a new project called [cptkip](https://github.com/danielbloy/cptkip)
+which was designed to be more lightweight and resource efficient. The framework
+was not mature enough to use in 2025 but did reach maturity in 2026 where it is
+introduced in some of the new Mark III nodes. Over time, the Mark 1 and Mark 2
+nodes will be replaced with Mark III nodes. The software stack can remain as
+`pico-interactive` but running on a Pico 2 or be migrated over to `cptkip` as
+functionality allows.
 
-Halloween 2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
-
-Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
-
-Halloween 2023 [video on YouTube](https://youtu.be/a0I0U5x334Y), the full code for Halloween 2023 can be
-found at https://github.com/danielbloy/pico-interactive-origins.
-
-## Implementation details
+## Networking on all microcontrollers
 
 Each Pico node running CircuitPython and that is connected to wifi needs a
 `settings.toml` file that contains:
@@ -43,23 +56,35 @@ WIFI_PASSWORD = "Password"
 ```
 
 Please be aware that there ae some inconsistencies about where settings are stored.
-This is in part due to the age differences of some of the materials as well as well
-as "how quickly" others have had to be put together. Therefore there is some
+This is in part due to the age differences of some of the materials as well
+as "how quickly" others have had to be put together. Therefore, there is some
 inconsistency as some properties are in `config.py` whilst others are in the code files
 themselves. It's usually obvious where the settings are or need to be.
 
-## Structure of the code
+## Structure of the projects
 
 Code/nodes that need to run on desktop computers such as Raspberry Pis or laptops can
-be found in the desktop directory. Code that is designed to run microcontroller based
-nodes can be found in microcontroller.
+be found in the desktop directory. Code designed to run on microcontroller based nodes
+can be found in the microcontroller directory.
 
-## How to run the code
+As each node haa a dependency on at least one other framework such as `pico-interactive`
+or `cptkip` and those frameworks require specific instructions, the nodes are also broken
+down by framework.
 
-For all code that is designed to run on a Raspberry Pi Pico, ensure that the device
-is running CircuitPython and has
-[pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the
-root of the device.
+## Nodes running `cptkip`
+
+These instructions are relevant to the Mark III nodes. The code has been tested
+on CircuitPython 9.x and 10.x.
+
+## Nodes running `pico-interactive`
+
+These instructions are relevant to the Mark I and Mark II nodes. The code has been tested
+on CircuitPython 9.x.
+
+### How to run the code
+
+For all code designed to run on a Raspberry Pi Pico, ensure that the device is running
+CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root of the device.
 
 For execution on a Desktop computer, the easiest way to execute the code is by using a
 Python virtual environment (either from the command-line or via PyCharm). In both
