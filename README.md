@@ -64,12 +64,50 @@ themselves. It's usually obvious where the settings are or need to be.
 ## Structure of the projects
 
 Code/nodes that need to run on desktop computers such as Raspberry Pis or laptops can
-be found in the desktop directory. Code designed to run on microcontroller based nodes
+be found in the desktop directory. Code designed to run on microcontroller-based nodes
 can be found in the microcontroller directory.
 
 As each node haa a dependency on at least one other framework such as `pico-interactive`
 or `cptkip` and those frameworks require specific instructions, the nodes are also broken
 down by framework.
+
+## Node inventory
+
+### Inside
+
+* Coordinator: Back bedroom, Acer Ubuntu laptop, mains powered - `pico-interactive`
+* Projector: Lounge, Lenovo laptop, mains powered - `pico-interactive`
+* Dragon eyes and roar: Bedroom, Medion laptop, main-powered - `pico-interactive`
+* Dragon fire: Bedroom, Santa catcher, single microcontroller, USB powered - `pico-interactive`
+
+### Sensors
+
+* Ultrasonic 1: Fence, Mark II node, single microcontroller, battery powered - `pico-interactive`
+* Ultrasonic 2: Fence, Mark II node, single microcontroller, battery powered - `pico-interactive`
+* TODO: Motion Sensor: House, Shelly BLU motion, n/a, battery powered - n/a
+
+### Outside
+
+**Witch hut**
+
+* Fire: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Cauldron: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+  * Also has atomiser in the cauldron.
+* Hazel: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Thunder, lightning, spiders: Witch hut, Mark II node, dual microcontroller, USB power - `pico-interactive`
+
+**Path**
+
+* Path primary: Path, 2 Mark 2 node, dual microcontroller, USB power - `pico-interactive`
+* Path secondary: Path, 2 Mark 2 node, single microcontroller, powered by primary - `pico-interactive`
+
+**Graveyard**
+
+* TODO: Add some sound boxes along the pathway
+
+**House**
+* Fire: door, custom device, single microcontroller, battery powered - custom software
+
 
 ## Nodes running `cptkip`
 
@@ -155,7 +193,7 @@ Then add `pico-interactive` as an additional content root from `File` ->
 
 It is easiest to run the Python code using PyCharm.
 
-The Lenovo laptop is a Windows based laptop that runs the video in the lounge.
+The Lenovo laptop is a Windows-based laptop that runs the video in the lounge.
 The easiest way to set this up is to follow the same instructions as for the
 Acer Ubuntu laptop that is running the coordinator code.
 
@@ -166,7 +204,7 @@ Copy the videos that are to be played into `\desktop\video`.
 
 #### Dragon, bedroom, Medion Windows laptop
 
-This is run on the Medion laptop which runs Windows. It needs one copy of
+This is run on the Medion-laptop which runs Windows. It needs one copy of
 `pico-interactive-halloween` and two copies of `pico-interactive`. One copy
 of `pico-interactive` should be vanilla whilst the second copy should have
 the variable `NETWORK_PORT_DESKTOP` changed from 5001 to 5002 in the file
