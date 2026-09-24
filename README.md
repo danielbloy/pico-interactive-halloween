@@ -94,7 +94,6 @@ down by framework.
 * Cauldron: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
   * Also has atomiser in the cauldron.
 * Hazel: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* Thunder, lightning, spiders: Witch hut, Mark II node, dual microcontroller, USB power - `pico-interactive`
 
 **Path**
 
@@ -103,7 +102,7 @@ down by framework.
 
 **Graveyard**
 
-* TODO: Add some sound boxes along the pathway
+* Thunder, lightning, spiders: Witch hut, Mark II node, dual microcontroller, USB power - `pico-interactive`
 
 **House**
 * Fire: door, custom device, single microcontroller, battery powered - custom software
