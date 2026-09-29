@@ -65,10 +65,9 @@ connectors.
 In previous years, the skulls have been laid out on the path. This unfortunately means they
 sometimes get knocked over by enthusiastic children. To address this, for 2025 I designed a
 simple mount that the skull goes in which can then be placed in the borders which are either
-side of the path. The mount has 2 pieces that are 3D printed separately and connected together
-via 3mm nuts and bolts. The bottom of the mount has a connector that accepts a tube with a 21mm
-outside diameter (I used [these from Amazon](https://www.amazon.co.uk/dp/B0BLCFMSPG?th=1)).
-It's a very simple system and the tubes can be cut to length but is effective.
+side of the path. The 2025 mount was okay but a little fragile and required nuts, bolts and
+purchasing 21mm tubing. In 2026 I redesigned the mounts as a 3-piece unit. It is completely
+3D printed, screws and pushes together and requires no other parts to be purchased.
 
 ![image](./Skull%20Mount.png)
 
@@ -79,7 +78,7 @@ It's a very simple system and the tubes can be cut to length but is effective.
 * [Neopixel ring clip, taller](./Neopixel_ring_holder_52mm_base_tall.stl)
 * [Neopixel clip holder](./Neopixel_ring_holder_57mm_clip.stl)
 * [Mason jar with Neopixel clip holder](./Mason_jar_id_with_57mm_clip.stl)
-* [Skull Mount](./Skull%20Mount.stl)
+* [Skull mount](./Skull%20Mount.stl)
 
 ## Bill of materials
 
