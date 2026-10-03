@@ -167,7 +167,7 @@ python main.py
 
 ### Specific node running instructions
 
-#### Coordinator, back bedroom, Acer Ubuntu laptop
+#### Coordinator, back bedroom, Desktop PC
 
 It is easiest to run the Python code using PyCharm.
 

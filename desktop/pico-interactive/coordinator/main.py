@@ -6,12 +6,13 @@
 import asyncio
 
 from interactive.configuration import EYES_DURATION, ROAR_DURATION, TRIGGER_DURATION
+from interactive.log import critical
 from interactive.log import info
 from interactive.network import NetworkController, send_message
 from interactive.polyfills.network import new_server
 from interactive.runner import Runner
-from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedEvents, new_scheduled_task
-from log import critical
+from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedEvents, \
+    new_scheduled_task
 from nodes import *
 
 PATH_EVENT = 0
@@ -43,8 +44,10 @@ if __name__ == '__main__':
     async def trigger_eyes() -> None:
         asyncio.create_task(trigger_node(EYES))
 
+
     async def trigger_roar() -> None:
         asyncio.create_task(trigger_node(ROAR))
+
 
     runner.add_task(
         new_scheduled_task(
