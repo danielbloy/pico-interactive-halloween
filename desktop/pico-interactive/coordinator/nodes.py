@@ -1,5 +1,5 @@
-# Coordinator: acer laptop.
-COORDINATOR = "192.168.1.194:5001"
+# Coordinator (Desktop)
+COORDINATOR = "192.168.1.99:5001"
 
 # Trigger nodes; only sends, does not receive.
 ULTRASONIC_1 = "192.168.1.72:80"
@@ -24,5 +24,8 @@ PROJECTOR = "192.168.1.248:5001"
 EYES = "192.168.1.76:5001"
 ROAR = "192.168.1.76:5002"
 
-# Acer ubuntu laptop
+# Acer ubuntu laptop (old co-ordinator)
 ACER = "192.168.1.194:5001"
+
+# Desktop (new co-ordinator)
+DESKTOP = "192.168.1.99:5001"
