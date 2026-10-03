@@ -188,7 +188,7 @@ a virtual environment if one does not already exist; `File` -> `Settings`
 Then add `pico-interactive` as an additional content root from `File` ->
 `Settings` -> `Project Structure`.
 
-### Projector, lounge, Lenovo Windows laptop
+#### Projector, lounge, Lenovo Windows laptop
 
 It is easiest to run the Python code using PyCharm.
 
@@ -226,7 +226,7 @@ than 5001):
 cd C:\Workspace\repos\pico-interactive-halloween
 audio_venv\scripts\activate  
 set PYTHONPATH=C:\Workspace\repos\pico-interactive2
-cd desktop\audio
+cd desktop\pico-interactive\audio
 python main.py
 ````
 
@@ -234,7 +234,7 @@ python main.py
 cd C:\Workspace\repos\pico-interactive-halloween
 video_venv\scripts\activate  
 set PYTHONPATH=C:\Workspace\repos\pico-interactive
-cd desktop\video
+cd desktop\pico-interactive\video
 python main.py
 ````
 
