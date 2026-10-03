@@ -10,31 +10,31 @@ TRIGGER_AUDIOS = [
     {
         'weight': 1,
         'audios': [
-            {'time': 0, 'file': '../../audio/dragon/dragon-1.mp3'}
+            {'time': 0, 'file': '../../../audio/dragon/dragon-1.mp3'}
         ]
     },
     {
         'weight': 1,
         'audios': [
-            {'time': 0, 'file': '../../audio/dragon/dragon-2.mp3'}
+            {'time': 0, 'file': '../../../audio/dragon/dragon-2.mp3'}
         ]
     },
     {
         'weight': 1,
         'audios': [
-            {'time': 0, 'file': '../../audio/dragon/dragon-3.mp3'}
+            {'time': 0, 'file': '../../../audio/dragon/dragon-3.mp3'}
         ]
     },
     {
         'weight': 1,
         'audios': [
-            {'time': 0, 'file': '../../audio/dragon/dragon-4.mp3'}
+            {'time': 0, 'file': '../../../audio/dragon/dragon-4.mp3'}
         ]
     },
     {
         'weight': 1,
         'audios': [
-            {'time': 0, 'file': '../../audio/dragon/dragon-5.mp3'}
+            {'time': 0, 'file': '../../../audio/dragon/dragon-5.mp3'}
         ]
     },
 ]
