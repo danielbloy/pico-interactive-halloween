@@ -125,6 +125,9 @@ celerybeat.pid
 .env
 .venv
 .audio_venv
+.video_venv
+audio_venv
+video_venv
 env/
 venv/
 ENV/
