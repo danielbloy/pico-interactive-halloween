@@ -79,7 +79,8 @@ if __name__ == '__main__':
             # NOTE: Whilst a video is running, the entire runner() framework will be paused.
             info(f"Playing video {event.event} - {video_set[event.event]['file']}")
             trigger_video = movie.VideoFileClip(video_set[event.event]['file'])
-            trigger_video.preview(fullscreen=True)
+            # trigger_video.preview(fullscreen=True)
+            trigger_video.preview()
 
 
     async def stop_display() -> None:
