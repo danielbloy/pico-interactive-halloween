@@ -60,6 +60,14 @@ For simplicity, you can cut the output connector off the Neopixel ring and use t
 but as I wanted to reuse my Neopixel rings for other projects, I bought some extra
 connectors.
 
+## Plain skull jar lid
+
+For 2026, I added some more skulls to the graveyard part of the display. These are spare
+skull jars with a flickering candle in them on mounts. For these, I prepared a simple
+plain lid.
+
+![plain jar lid](./plain_lid.png)
+
 ## Skull Mount
 
 In previous years, the skulls have been laid out on the path. This unfortunately means they
@@ -78,6 +86,7 @@ purchasing 21mm tubing. In 2026 I redesigned the mounts as a 3-piece unit. It is
 * [Neopixel ring clip, taller](./Neopixel_ring_holder_52mm_base_tall.stl)
 * [Neopixel clip holder](./Neopixel_ring_holder_57mm_clip.stl)
 * [Mason jar with Neopixel clip holder](./Mason_jar_id_with_57mm_clip.stl)
+* [Plain jar lid](./plain_lid.stl)
 * [Skull mount](./Skull%20Mount.stl)
 
 ## Bill of materials
