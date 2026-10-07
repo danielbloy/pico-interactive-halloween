@@ -66,9 +66,9 @@ async def button_press() -> None:
     triggerable.triggered = True
 
 
-button_controller = ButtonController(new_button(TRIGGER_PIN))
-button_controller.add_single_press_handler(button_press)
-button_controller.register(runner)
+trigger_controller = ButtonController(new_button(TRIGGER_PIN))
+trigger_controller.add_single_press_handler(button_press)
+trigger_controller.register(runner)
 
 
 def network_trigger() -> None:
