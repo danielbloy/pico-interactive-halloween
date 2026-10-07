@@ -1,21 +1,11 @@
-# This is an example of a combination of the common code that runs the network device
-# and the cauldron code running on a single Pico 2 W (or other device with more memory).
-# It has a capability to trigger a remote node but the local node trigger has been removed.
-# The config.py file must setup the following properties:
-#   * BUTTON_PIN
-#   * TRIGGER_DURATION
-#   * REMOTE_TRIGGER_PIN
-import asyncio
-from digitalio import Direction, DigitalInOut
-
+# This is a combined Pico 2 W variant of this code where the network and display
+# code is all contained in a single file.
 from interactive.animation import Flicker
 from interactive.audio import AudioController
 from interactive.button import ButtonController
 from interactive.configuration import BUTTON_PIN, AUDIO_PIN, TRIGGER_DURATION
-from interactive.configuration import CAULDRON_PIN, CAULDRON_COLOUR, CAULDRON_BRIGHTNESS, \
-    CAULDRON_SPEED
-from interactive.configuration import REMOTE_TRIGGER_PIN
-from interactive.configuration import TRIGGER_PIN
+from interactive.configuration import CAULDRON_BRIGHTNESS, CAULDRON_SPEED
+from interactive.configuration import CAULDRON_PIN, CAULDRON_COLOUR
 from interactive.memory import setup_memory_reporting
 from interactive.network import NetworkController
 from interactive.polyfills.animation import BLACK
@@ -28,17 +18,11 @@ from interactive.scheduler import new_triggered_task, Triggerable
 
 CAULDRON_OFF = 0.0
 
-# Because of memory constraints, we do not use the Interactive class here.
-# Rather, we setup everything ourselves to minimise what we pull in.
 runner = Runner()
 
 runner.cancel_on_exception = False
 runner.restart_on_exception = True
 runner.restart_on_completion = False
-
-remote = DigitalInOut(REMOTE_TRIGGER_PIN)
-remote.direction = Direction.OUTPUT
-remote.value = 1
 
 pixels = new_pixels(CAULDRON_PIN, 30, brightness=CAULDRON_BRIGHTNESS)
 animation = Flicker(pixels, speed=CAULDRON_SPEED, color=CAULDRON_COLOUR)
@@ -48,10 +32,6 @@ audio_controller.register(runner)
 
 
 async def start_display() -> None:
-    remote.value = 0
-    await asyncio.sleep(0.05)
-    remote.value = 1
-
     pixels.fill(CAULDRON_COLOUR)
     pixels.brightness = CAULDRON_BRIGHTNESS
     pixels.show()
