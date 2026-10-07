@@ -3,7 +3,7 @@
 from interactive.animation import Flicker
 from interactive.audio import AudioController
 from interactive.button import ButtonController
-from interactive.configuration import BUTTON_PIN, AUDIO_PIN, TRIGGER_DURATION
+from interactive.configuration import AUDIO_PIN, TRIGGER_PIN, TRIGGER_DURATION
 from interactive.configuration import FIRE_COLOUR, FIRE_SPEED
 from interactive.configuration import FIRE_PIN, FIRE_BRIGHTNESS
 from interactive.memory import setup_memory_reporting
@@ -66,7 +66,7 @@ async def button_press() -> None:
     triggerable.triggered = True
 
 
-button_controller = ButtonController(new_button(BUTTON_PIN))
+button_controller = ButtonController(new_button(TRIGGER_PIN))
 button_controller.add_single_press_handler(button_press)
 button_controller.register(runner)
 
