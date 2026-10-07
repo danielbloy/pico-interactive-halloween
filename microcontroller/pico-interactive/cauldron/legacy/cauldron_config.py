@@ -2,12 +2,14 @@
 # This code runs on a standard Pico 2040, using the 2023 box.
 import board
 
+from interactive.polyfills.animation import GREEN
+
 AUDIO_PIN = board.GP26
 
-FIRE_PIN = board.GP28
-FIRE_COLOUR = ORANGE
-FIRE_BRIGHTNESS = 1.0
-FIRE_SPEED = 0.1
+CAULDRON_PIN = board.GP28
+CAULDRON_COLOUR = GREEN
+CAULDRON_BRIGHTNESS = 1.0
+CAULDRON_SPEED = 0.03
 
 TRIGGER_PIN = board.GP9
 TRIGGER_DURATION = 40

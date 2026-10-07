@@ -1,6 +1,7 @@
-# NOTE: Rename this to config.py on the cauldron node.
-# This code runs on a standard Pico 2040, using the 2023 box.
+# This code runs on a standard Pico 2W, using the 2026 Mark 3 node.
 import board
+
+from interactive.polyfills.animation import GREEN
 
 AUDIO_PIN = board.GP26
 
