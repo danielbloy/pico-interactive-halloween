@@ -1,11 +1,16 @@
 from cptkip.core.control import SEND_MESSAGE_TIMEOUT
+from cptkip.core.environment import is_running_on_desktop
 from cptkip.network.biplane import Server, Response
 from cptkip.network.requests import requests
+from cptkip.task import memory_monitor_task
+from cptkip.task.basic_runner import run
+
+# collections.abc is not available in CircuitPython.
+if is_running_on_desktop():
+    from collections.abc import Callable
 
 
-# TODO: Replace this with our own set of routes to be compatible with pico-interactive.
-
-def routes(server: Server):
+def __add_routes(server: Server):
     @server.route("/hi", "GET")
     def main(query_parameters, headers, body):
         return Response("<b>hi!</b>", content_type="text/html")
@@ -29,3 +34,19 @@ def send_message(path: str, host: str,
     return requests.request(method, f"{protocol}://{host}/{path}",
                             headers=HEADERS, data=data, json=json,
                             timeout=SEND_MESSAGE_TIMEOUT)
+
+
+def execute(trigger: Callable[[], None], *funcs: Callable[[], bool]):
+    """
+    Executes the network code whilst also running the supplied tasks. A callback can be
+    provided that is called when the network code receives a trigger message.
+    """
+    server = Server()
+
+    __add_routes(server)
+    listen = server.create_task()
+
+    # TODO: Get monitor settings from configuration
+    monitor = memory_monitor_task.create(4, 1, lambda: True)
+
+    run(*funcs, listen, monitor)

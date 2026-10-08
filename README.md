@@ -1,19 +1,21 @@
 # pico-interactive-halloween
 
-Please see my website [Code Club Adventures](http://codeclubadventures.com/) for more coding materials.
+Please see my website [Code Club Adventures](http://codeclubadventures.com/) for more coding
+materials.
 
 This project has been moved from https://github.com/danielbloy/pico-interactive/halloween/2024
 
 These videos don't quite do it justice but are good enough to get an idea
 of what the finished halloween projects look like.
 
-Halloween 2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
+Halloween
+2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
 
 Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
 
-Halloween 2023 [video on YouTube](https://youtu.be/a0I0U5x334Y), the full code for Halloween 2023 can be
+Halloween 2023 [video on YouTube](https://youtu.be/a0I0U5x334Y), the full code for Halloween 2023
+can be
 found at https://github.com/danielbloy/pico-interactive-origins.
-
 
 My daughter loves Halloween and after Halloween 2022 (she was 8 years old at the
 time) we discussed using some of the electronics that I use in my Coding Clubs to
@@ -37,7 +39,8 @@ Whilst [pico-interactive](https://github.com/danielbloy/pico-interactive) works
 great, it is a rather hungry framework in terms of RAM and this meant the new nodes
 for 2024 still had to have two microcontrollers in them (the Pico 2 was very new
 at the time and did not have CircuitPython support in time for me to upgrade). To
-solve the resource issues, I started a new project called [cptkip](https://github.com/danielbloy/cptkip)
+solve the resource issues, I started a new project
+called [cptkip](https://github.com/danielbloy/cptkip)
 which was designed to be more lightweight and resource efficient. The framework
 was not mature enough to use in 2025 but did reach maturity in 2026 where it is
 introduced in some of the new Mark III nodes. Over time, the Mark 1 and Mark 2
@@ -92,21 +95,23 @@ down by framework.
 
 * Fire: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 * Cauldron: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-  * Also has atomiser in the cauldron.
+    * Also has atomiser in the cauldron.
 * Hazel: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 
 **Path**
 
 * Path primary: Path, 2 Mark 2 node, dual microcontroller, USB power - `pico-interactive`
-* Path secondary: Path, 2 Mark 2 node, single microcontroller, powered by primary - `pico-interactive`
+* Path secondary: Path, 2 Mark 2 node, single microcontroller, powered by primary -
+  `pico-interactive`
 
 **Graveyard**
 
-* Thunder, lightning, spiders: Witch hut, Mark II node, dual microcontroller, USB power - `pico-interactive`
+* Thunder, lightning, spiders: Witch hut, Mark II node, dual microcontroller, USB power -
+  `pico-interactive`
 
 **House**
-* Fire: door, custom device, single microcontroller, battery powered - custom software
 
+* Fire: door, custom device, single microcontroller, battery powered - custom software
 
 ## Nodes running `cptkip`
 
@@ -121,15 +126,16 @@ on CircuitPython 9.x.
 ### How to run the code
 
 For all code designed to run on a Raspberry Pi Pico, ensure that the device is running
-CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into the root of the device.
+CircuitPython and has [pico-interactive](https://github.com/danielbloy/pico-interactive) copied into
+the root of the device.
 
 For execution on a Desktop computer, the easiest way to execute the code is by using a
 Python virtual environment (either from the command-line or via PyCharm). In both
 instances, the virtual environment will need to have the `requirements.txt` installed
 and a mapping to a copy of [pico-interactive](https://github.com/danielbloy/pico-interactive).
 
-If running from PyCharm, setup a virtual environment and add `pico-interactive` as an
-additional content root from `File` -> `Settings` -> `Project Structure`.
+If running from PyCharm, setup a virtual environment and add `pico-interactive` and
+`cptkip` as additional content roots from `File` -> `Settings` -> `Project Structure`.
 
 The following instructions were used to setup such an environment in Ubuntu:
 
@@ -240,7 +246,8 @@ python main.py
 
 ## License
 
-All materials provided in this project is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0
+All materials provided in this project is licensed under the Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0
 International License. To view a copy of this license, visit
 <https://creativecommons.org/licenses/by-nc-sa/4.0/>.
 
@@ -251,8 +258,11 @@ In summary, this means that you are free to:
 
 Provided you follow these terms:
 
-* **Attribution** — You must give appropriate credit , provide a link to the license, and indicate if changes were made.
-  You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
+* **Attribution** — You must give appropriate credit , provide a link to the license, and indicate
+  if changes were made.
+  You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you
+  or your use.
 * **NonCommercial** — You may not use the material for commercial purposes.
-* **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your contributions under the
+* **ShareAlike** — If you remix, transform, or build upon the material, you must distribute your
+  contributions under the
   same license as the original.
