@@ -20,7 +20,6 @@ def run() -> bool:
     queue.update()
     led_animation.animate()
     pixels_animation.animate()
-    print("hi")
     return True
 
 
