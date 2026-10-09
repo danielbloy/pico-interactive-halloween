@@ -1,6 +1,7 @@
 import cptkip.config.configuration as config
 from cptkip.core.control import SEND_MESSAGE_TIMEOUT
 from cptkip.core.environment import is_running_on_desktop
+from cptkip.core.logging import info
 from cptkip.network.biplane import Server, Response
 from cptkip.network.requests import requests
 from cptkip.task import memory_monitor_task
@@ -109,15 +110,18 @@ def send_message(path: str, host: str,
 def execute(begin_display, run_display, end_display: Callable[[], None],
             *funcs: Callable[[], bool]):
     """
-    TODO: comments
+    Executes the network connected display. Three functions must be provided and these
+    are passed directly to the triggered task. Other normal runner functions can be
+    passed in too and these get executed on each iteration, after any trigger event but
+    before the trigger is cleared.
     """
-
-    # TODO: Log level
 
     duration = 40
 
     if hasattr(config, "TRIGGER_DURATION"):
         duration = config.TRIGGER_DURATION
+
+    info(f"TRIGGER_DURATION: {duration}")
 
     triggered = False
 
@@ -148,4 +152,14 @@ def execute(begin_display, run_display, end_display: Callable[[], None],
         monitor = memory_monitor_task.create(4, 1, lambda: True)
         functions.append(monitor)
 
-    run(*functions)
+    # noinspection broad-exception
+    try:
+        # TODO: This currently uses just basic_runner as that is all cktpip currently
+        #       provides. When a reliable runner becomes available we should switch to that.
+        #       In the mean time, we will simply restart the microcontroller if an exception
+        #       is generated.
+        run(*functions)
+    except:
+        if not is_running_on_desktop():
+            import microcontroller
+            microcontroller.reset()
