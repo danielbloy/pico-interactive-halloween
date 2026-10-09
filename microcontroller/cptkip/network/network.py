@@ -5,6 +5,9 @@ from cptkip.network.biplane import Server, Response
 from cptkip.network.requests import requests
 from cptkip.task import memory_monitor_task
 from cptkip.task.basic_runner import run
+from cptkip.task.triggered_task import create as create_triggered_task
+
+# TODO: Test on device and check memory usage.
 
 # collections.abc is not available in CircuitPython.
 if is_running_on_desktop():
@@ -103,16 +106,43 @@ def send_message(path: str, host: str,
                             timeout=SEND_MESSAGE_TIMEOUT)
 
 
-def execute(trigger: Callable[[], None], *funcs: Callable[[], bool]):
+def execute(begin_display, run_display, end_display: Callable[[], None],
+            *funcs: Callable[[], bool]):
     """
-    Executes the network code whilst also running the supplied tasks. A callback can be
-    provided that is called when the network code receives a trigger message.
+    TODO: comments
     """
-    server = Server()
 
+    # TODO: Log level
+
+    duration = 40
+
+    if hasattr(config, "TRIGGER_DURATION"):
+        duration = config.TRIGGER_DURATION
+
+    triggered = False
+
+    triggered_task = create_triggered_task(
+        lambda: triggered,
+        duration=duration,
+        begin=begin_display,
+        func=run_display,
+        end=end_display,
+        continue_func=lambda: True)
+
+    def clear_trigger() -> bool:
+        nonlocal triggered
+        triggered = False
+        return True
+
+    def trigger():
+        nonlocal triggered
+        triggered = True
+
+    server = Server()
     __add_routes(server, trigger)
     listen = server.create_task()
-    functions = [*funcs, listen]
+
+    functions = [listen, triggered_task, *funcs, clear_trigger]
 
     if hasattr(config, "REPORT_RAM") and config.REPORT_RAM:
         monitor = memory_monitor_task.create(4, 1, lambda: True)
