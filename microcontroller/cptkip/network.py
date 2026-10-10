@@ -3,12 +3,9 @@ from cptkip.core.control import SEND_MESSAGE_TIMEOUT
 from cptkip.core.environment import is_running_on_desktop
 from cptkip.core.logging import info
 from cptkip.network.biplane import Server, Response
-from cptkip.network.requests import requests
 from cptkip.task import memory_monitor_task
 from cptkip.task.basic_runner import run
 from cptkip.task.triggered_task import create as create_triggered_task
-
-# TODO: Test on device and check memory usage.
 
 # collections.abc is not available in CircuitPython.
 if is_running_on_desktop():
@@ -102,6 +99,7 @@ def send_message(path: str, host: str,
     """
     Sends a message with the provided payload to the specified node, ensuring headers are included.
     """
+    from cptkip.network.requests import requests
     return requests.request(method, f"{protocol}://{host}/{path}",
                             headers=HEADERS, data=data, json=json,
                             timeout=SEND_MESSAGE_TIMEOUT)
@@ -146,7 +144,12 @@ def execute(begin_display, run_display, end_display: Callable[[], None],
     __add_routes(server, trigger)
     listen = server.create_task()
 
-    functions = [listen, triggered_task, *funcs, clear_trigger]
+    # This is not the most Pythonic way to do this but it needs to work with CircuitPython.
+    functions = [listen, triggered_task]
+    for func in funcs:
+        functions.append(func)
+
+    functions.append(clear_trigger)
 
     if hasattr(config, "REPORT_RAM") and config.REPORT_RAM:
         monitor = memory_monitor_task.create(4, 1, lambda: True)
