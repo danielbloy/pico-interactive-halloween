@@ -1,3 +1,4 @@
+# This is to be used with the flicker and sound code.
 AUDIO_FILE = "bubbling.mp3"
 
 PIXELS_BRIGHTNESS = 1.0
