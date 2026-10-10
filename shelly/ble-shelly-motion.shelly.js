@@ -7,6 +7,9 @@
  */
 
 /******************* START CHANGE HERE *******************/
+let WEBHOOK_URL = "http://192.168.99:5001/trigger";
+let WEBHOOK_URL = "http://192.168.1.175/trigger";
+
 let CONFIG = {
     // When set to true, debug messages will be logged to the console
     debug: false,
@@ -18,8 +21,7 @@ let CONFIG = {
     // When `allowedMacAddresses` is set to null, evets from every bluetooth device are accepted.
     // allowedMacAddresses: null,
     allowedMacAddresses: [
-        "aa:bc:12:34:56:78", // events only from these mac addresses are allowed.
-        "11:22:33:45:5a:bc",
+        "b0:c7:de:7f:09:18", // events only from these mac addresses are allowed.
     ],
 
     /**
@@ -31,6 +33,19 @@ let CONFIG = {
         // Toggle the first replay ON/OFF based on the motion value.
         Shelly.call("Switch.Set", {id: 0, on: motion});
         console.log("Motion", motion);
+        if (motion) {
+            Shelly.call(
+                "HTTP.GET",
+                {url: WEBHOOK_URL},
+                function (response, error_code, error_message) {
+                    if (error_code === 0) {
+                        print("HTTP request successful: " + response.body);
+                    } else {
+                        print("HTTP request failed: " + error_message);
+                    }
+                }
+            );
+        }
     },
 
     /**
@@ -39,11 +54,7 @@ let CONFIG = {
      * @param {Object} eventData Object, containing all parameters received from the Shelly BLU Motion device. Example: {"encryption":false,"BTHome_version":2,"pid":16,"battery":100,"illuminance":109,"motion":1,"button":1,"rssi":-53,"address":"aa:bc:12:34:56:78"}
      */
     illuminanceHandler: function (illuminance, eventData) {
-        // Compile the topic based on the mac address of the reporter.
-        let topic = eventData.address + "/illuminance";
-
-        // Publush the data.
-        MQTT.publish(topic, String(illuminance));
+        // Do nothing at the moment
     },
 
     /**
@@ -52,7 +63,7 @@ let CONFIG = {
      */
     onStatusUpdate: function (eventData) {
         // Do nothing at the moment.
-    }
+    },
 };
 /******************* STOP CHANGE HERE *******************/
 
@@ -175,7 +186,7 @@ const BTHomeDecoder = {
 function onReceivedPacket(data) {
     if (CONFIG._processedMacAddresses !== null) {
         if (CONFIG._processedMacAddresses.indexOf(data.address) < 0) {
-            logger(["Received event from", data.address, "outside of the allowed addresses"], "Info");
+            console.log(["Received event from", data.address, "outside of the allowed addresses"], "Info");
             return;
         }
     }
@@ -185,7 +196,7 @@ function onReceivedPacket(data) {
         typeof data.motion !== "undefined"
     ) {
         CONFIG.motionHandler(data.motion === 1, data);
-        logger("Motion handler called", "Info");
+        console.log("Motion handler called", "Info");
     }
 
     if (
@@ -193,12 +204,12 @@ function onReceivedPacket(data) {
         typeof data.illuminance !== "undefined"
     ) {
         CONFIG.illuminanceHandler(data.illuminance, data);
-        logger("Illuminance handler called", "Info");
+        console.log("Illuminance handler called", "Info");
     }
 
     if (typeof CONFIG.onStatusUpdate === "function") {
         CONFIG.onStatusUpdate(data);
-        logger("New status update", "Info");
+        console.log("New status update", "Info");
     }
 }
 
@@ -230,7 +241,7 @@ function BLEScanCallback(event, result) {
         typeof unpackedData === "undefined" ||
         unpackedData["encryption"]
     ) {
-        logger("Encrypted devices are not supported", "Error");
+        console.log("Encrypted devices are not supported", "Error");
         return;
     }
 
@@ -281,9 +292,7 @@ function init() {
         }
     }
 
-    if (
-        typeof CONFIG.allowedMacAddresses !== "undefined"
-    ) {
+    if (typeof CONFIG.allowedMacAddresses !== "undefined") {
         if (CONFIG.allowedMacAddresses !== null) {
             // Process configured mac addresses all to lower case and remove duplicates.
             CONFIG._processedMacAddresses =
