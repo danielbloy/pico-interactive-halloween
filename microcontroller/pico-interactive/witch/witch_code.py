@@ -4,7 +4,8 @@ from interactive.animation import Flicker
 from interactive.audio import AudioController
 from interactive.button import ButtonController
 from interactive.configuration import AUDIO_PIN, TRIGGER_DURATION
-from interactive.configuration import CAULDRON_PIN, CAULDRON_COLOUR, CAULDRON_BRIGHTNESS, CAULDRON_SPEED
+from interactive.configuration import CAULDRON_PIN, CAULDRON_COLOUR, CAULDRON_BRIGHTNESS, \
+    CAULDRON_SPEED
 from interactive.configuration import TRIGGER_PIN
 from interactive.memory import setup_memory_reporting
 from interactive.polyfills.animation import BLACK

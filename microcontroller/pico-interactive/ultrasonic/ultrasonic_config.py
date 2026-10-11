@@ -2,7 +2,7 @@
 # This code runs on a standard Pico 2040
 import board
 
-NODE_COORDINATOR = "192.168.1.248:5001"
+NODE_COORDINATOR = "192.168.1.99:5001"
 
 BUTTON_PIN = board.GP26
 

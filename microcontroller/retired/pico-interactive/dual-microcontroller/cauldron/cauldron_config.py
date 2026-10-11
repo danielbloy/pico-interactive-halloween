@@ -1,4 +1,5 @@
-# This code runs on a standard Pico 2W, using the 2026 Mark 3 node.
+# NOTE: Rename this to config.py on the cauldron node.
+# This code runs on a standard Pico 2040, using the 2023 box.
 import board
 
 from interactive.polyfills.animation import GREEN

@@ -2,14 +2,15 @@
 
 The Mark III nodes are a new design where all parts are 3D printed and
 can be screwed together. This makes it much easier to assemble the devices
-and use the same parts for different types of boxes. The first version of
+and use the same parts for different types of nodes. The first version of
 the speaker box has:
 
 * A housing for a speaker - light blue parts
 * A lid for the speaker - dark blue parts
 * A mount for the circuit board, including clip - red parts
 * A housing for the circuit board and base lid - green parts
-* A base internal cover that has holes for buttons, cables and friction clip for a 4 x AA battery pack - orange parts
+* A base internal cover that has holes for buttons, cables and friction clip for a 4 x AA battery
+  pack - orange parts
 * An extended base lid with holes for cable glands - yellow parts
 * A stand - pink part
 
@@ -38,12 +39,13 @@ that in to firmly secure the circuit board holder.
 
 ![3](./3.jpg)
 
-Screw the housing over the circuit board (green parts). Fit the desired internal base cover
-(orange parts). this example is for a battery only unit so only has a rocker switch hole.
+Screw the housing over the circuit board (green parts). Fit the desired internal base cover (orange
+parts). this example is for a battery only unit so only has a rocker switch hole.
 
 ![4](./4.jpg)
 
-Screw in the appropriate base (green or yellow parts). The vertical example below has the green base whereas the example laying flat has a single hole for a gland. Please note that
+Screw in the appropriate base (green or yellow parts). The vertical example below has the green base
+whereas the example laying flat has a single hole for a gland. Please note that
 when using the yellow parts, the device is slightly longer.
 
 ![5](./5.jpg)
