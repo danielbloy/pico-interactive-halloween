@@ -116,8 +116,9 @@ down by framework.
 
 **House**
 
-* Fire: door, custom device, single microcontroller, battery powered - custom software
-* House 1 sound: door
+* Skeleton will be in front of the door to block it.
+* Fire: Door, custom device, single microcontroller, battery powered - custom software
+* House 1 sound: Door, Mark III node, single microcontroller, battery powered - `cptkip`
 
 ## Nodes running `cptkip`
 
