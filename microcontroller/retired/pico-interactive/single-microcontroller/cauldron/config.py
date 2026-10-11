@@ -1,4 +1,4 @@
-# This code runs on a standard Pico 2W, using the 2026 Mark 3 node.
+# This code runs on a standard Pico 2W, using the 2026 Mark III node.
 import board
 
 from interactive.polyfills.animation import GREEN

@@ -43,7 +43,7 @@ solve the resource issues, I started a new project
 called [cptkip](https://github.com/danielbloy/cptkip)
 which was designed to be more lightweight and resource efficient. The framework
 was not mature enough to use in 2025 but did reach maturity in 2026 where it is
-introduced in some of the new Mark III nodes. Over time, the Mark 1 and Mark 2
+introduced in some of the new Mark III nodes. Over time, the Mark I and Mark II
 nodes will be replaced with Mark III nodes. The software stack can remain as
 `pico-interactive` but running on a Pico 2 or be migrated over to `cptkip` as
 functionality allows.
@@ -91,27 +91,33 @@ down by framework.
 
 ### Outside
 
-**Witch hut**
+**Witch House**
 
-* Fire: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* Cauldron: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Fire: Witch House, Mark III node, single microcontroller, battery powered - `cptkip`
+* Cauldron: Witch House, Mark III node, single microcontroller, battery powered - `cptkip`
     * Also has atomiser in the cauldron.
-* Hazel: Witch hut, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Hazel: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* House 1: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* House 2: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 
 **Path**
 
-* Path primary: Path, 2 Mark 2 node, dual microcontroller, USB power - `pico-interactive`
-* Path secondary: Path, 2 Mark 2 node, single microcontroller, powered by primary -
+* Path primary: Path, 2 x Mark II node, dual microcontroller, USB power - `pico-interactive`
+* Path secondary: Path, 2 x Mark II node, single microcontroller, powered by primary -
   `pico-interactive`
 
 **Graveyard**
 
-* Thunder, lightning, spiders: Witch hut, Mark II node, dual microcontroller, USB power -
+* Thunder, lightning, spiders: Graveyard, Mark II node, dual microcontroller, USB power -
   `pico-interactive`
+* Graveyard 1 sound: Graveyard, Mark III node, single microcontroller, battery powered - `cptkip`
+* Graveyard 2 sound: Graveyard, Mark III node, single microcontroller, battery powered - `cptkip`
+* Graveyard 3 sound: Graveyard, Mark III node, single microcontroller, battery powered - `cptkip`
 
 **House**
 
 * Fire: door, custom device, single microcontroller, battery powered - custom software
+* House 1 sound: door
 
 ## Nodes running `cptkip`
 
