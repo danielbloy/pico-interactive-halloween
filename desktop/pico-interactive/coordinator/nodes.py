@@ -7,9 +7,9 @@ ULTRASONIC_2 = "192.168.1.84:80"
 
 # Nodes for the witch installation.
 WITCH = "192.168.1.108:80"
-# FIRE = "192.168.1.200:80"
+WITCH_HOUSE_1 = "192.168.1.200:80"
+WITCH_HOUSE_2 = "192.168.1.198:80"
 FIRE = "192.168.1.165:80"
-# CAULDRON = "192.168.1.198:80"
 CAULDRON = "192.168.1.80:80"
 
 # Node for the path.

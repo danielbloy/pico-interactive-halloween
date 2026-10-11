@@ -5,7 +5,7 @@
 #
 import asyncio
 
-from interactive.configuration import EYES_DURATION, ROAR_DURATION, TRIGGER_DURATION
+from interactive.configuration import TRIGGER_DURATION
 from interactive.log import critical
 from interactive.log import info
 from interactive.network import NetworkController, send_message
@@ -15,15 +15,24 @@ from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedE
     new_scheduled_task
 from nodes import *
 
+# We trigger the eyes and roar constantly as an attract to the house
+EYES_DURATION = 80
+ROAR_DURATION = 20
+
+# Events
 PATH_EVENT = 0
-CAULDRON_EVENT = 1
-FIRE_EVENT = 2
-WITCH_EVENT = 3
-GRAVEYARD_EVENT = 4
-PROJECTOR_EVENT = 5
+WITCH_HOUSE_EVENT_1 = 1
+WITCH_HOUSE_EVENT_2 = 2
+CAULDRON_EVENT = 3
+FIRE_EVENT = 4
+WITCH_EVENT = 5
+GRAVEYARD_EVENT = 6
+PROJECTOR_EVENT = 7
 
 event_to_node = [
     PATH,
+    WITCH_HOUSE_1,
+    WITCH_HOUSE_2,
     CAULDRON,
     FIRE,
     WITCH,
@@ -52,18 +61,20 @@ if __name__ == '__main__':
     runner.add_task(
         new_scheduled_task(
             trigger_eyes,
-            frequency=1 / EYES_DURATION,
+            frequency=1 // EYES_DURATION,
         ))
 
     runner.add_task(
         new_scheduled_task(
             trigger_roar,
-            frequency=1 / ROAR_DURATION,
+            frequency=1 // ROAR_DURATION,
         ))
 
     trigger_events = TriggerTimedEvents()
     trigger_events.add_event(00.00, PATH_EVENT)
     trigger_events.add_event(00.00, PROJECTOR_EVENT)
+    trigger_events.add_event(00.80, WITCH_HOUSE_EVENT_1)
+    trigger_events.add_event(00.90, WITCH_HOUSE_EVENT_2)
     trigger_events.add_event(01.00, FIRE_EVENT)
     trigger_events.add_event(01.10, CAULDRON_EVENT)
     trigger_events.add_event(01.20, WITCH_EVENT)
