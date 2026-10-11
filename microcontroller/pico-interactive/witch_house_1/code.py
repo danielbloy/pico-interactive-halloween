@@ -1,9 +1,6 @@
-# NOTE: Rename this to code.py on each cauldron microcontroller.
-
 from interactive.audio import AudioController
 from interactive.button import ButtonController
-from interactive.configuration import AUDIO_PIN, TRIGGER_DURATION
-from interactive.configuration import TRIGGER_PIN
+from interactive.configuration import AUDIO_PIN, TRIGGER_DURATION, TRIGGER_PIN
 from interactive.memory import setup_memory_reporting
 from interactive.polyfills.audio import new_mp3_player
 from interactive.polyfills.button import new_button
@@ -39,6 +36,7 @@ async def start_display() -> None:
 
 async def run_display() -> None:
     events = trigger_events.run()
+    # TODO: Pick sounds and events.
 
     for event in events:
         import random
