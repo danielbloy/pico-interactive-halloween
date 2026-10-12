@@ -1,6 +1,6 @@
 # 3D Models for the skull jars
 
-The original skull jars were purchased from [Hobbyraft](https://www.hobbycraft.co.uk/)
+The original skull jars were purchased from [Hobbycraft](https://www.hobbycraft.co.uk/)
 for around £2 each and have a mason jar typescrew lid. They are green but we also got
 some orange ones. Here is a [link](https://www.hobbycraft.co.uk/light-green-skull-drinking-jar-/6701041003.html).
 
@@ -96,11 +96,11 @@ You will need to purchase enough items to build all 12 skulls.
 
 * [3-core cable](https://www.amazon.co.uk/gp/product/B07HHLGVH5)
 * [Skull jar](https://www.hobbycraft.co.uk/light-green-skull-drinking-jar-/6701041003.html)
-* [12mm cable glands](https://www.amazon.co.uk/gp/product/B07JH2LPZF/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1) 
+* [12mm cable glands](https://www.amazon.co.uk/gp/product/B07JH2LPZF/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)
 * [32mm Neopixel ring](https://coolcomponents.co.uk/products/8-led-32mm-ring-ws2812b-5050-rgb-led-with-integrated-drivers-adafruit-neopixel-compatible)
 * [Terminal blocks](https://www.amazon.co.uk/gp/product/B0BTPFWNVF)
 * [JST SM connectors](https://www.amazon.co.uk/gp/product/B07K2L814N)
 * [Mason jar with Neopixel clip holder](./Mason_jar_id_with_57mm_clip.stl)
 * [Neopixel ring clip, normal](./Neopixel_ring_holder_52mm_base.stl)
 * [Skull Mount](./Skull%20Mount.stl)
-* [21 mm outside diameter tube](https://www.amazon.co.uk/dp/B0BLCFMSPG?th=1)
+* [21 mm outside diameter tube](https://www.amazon.co.uk/dp/B0BLCFMSPG?th=1) (legacy version)
