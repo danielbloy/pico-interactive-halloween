@@ -3,9 +3,14 @@
 # The Eyes are displayed on the TV on the 1st floor and are kicked off on repeat
 # even when the trigger is not activated. The eyes act as an attract to the house.
 #
+
+# TODO: Split the main display nodes into zones that are triggered separately.
+
 import asyncio
 
-from interactive.configuration import TRIGGER_DURATION
+from adafruit_httpserver import Route, GET, Response, \
+    Request, NOT_FOUND_404
+
 from interactive.log import critical
 from interactive.log import info
 from interactive.network import NetworkController, send_message
@@ -18,6 +23,9 @@ from nodes import *
 # We trigger the eyes and roar constantly as an attract to the house
 EYES_DURATION = 80
 ROAR_DURATION = 20
+
+# The main display length (apart from the projector which will be longer in many cases).
+TRIGGER_DURATION = 45
 
 # Events
 PATH_EVENT = 0
@@ -58,27 +66,39 @@ if __name__ == '__main__':
         asyncio.create_task(trigger_node(ROAR))
 
 
-    runner.add_task(
-        new_scheduled_task(
-            trigger_eyes,
-            frequency=1 // EYES_DURATION,
-        ))
+    def add_triggered_tasks():
+        runner.add_task(
+            new_scheduled_task(
+                trigger_eyes,
+                frequency=1 / EYES_DURATION,
+            ))
 
-    runner.add_task(
-        new_scheduled_task(
-            trigger_roar,
-            frequency=1 // ROAR_DURATION,
-        ))
+        runner.add_task(
+            new_scheduled_task(
+                trigger_roar,
+                frequency=1 / ROAR_DURATION,
+            ))
 
-    trigger_events = TriggerTimedEvents()
-    trigger_events.add_event(00.00, PATH_EVENT)
-    trigger_events.add_event(00.00, PROJECTOR_EVENT)
-    trigger_events.add_event(00.80, WITCH_HOUSE_EVENT_1)
-    trigger_events.add_event(00.90, WITCH_HOUSE_EVENT_2)
-    trigger_events.add_event(01.00, FIRE_EVENT)
-    trigger_events.add_event(01.10, CAULDRON_EVENT)
-    trigger_events.add_event(01.20, WITCH_EVENT)
-    trigger_events.add_event(02.00, GRAVEYARD_EVENT)
+
+    add_triggered_tasks()
+
+    ZONE_1 = 0
+    ZONE_2 = 1
+    ZONE_3 = 2
+
+    trigger_events = [
+        TriggerTimedEvents(),
+        TriggerTimedEvents(),
+        TriggerTimedEvents(),
+    ]
+    trigger_events[ZONE_1].add_event(00.00, PATH_EVENT)
+    trigger_events[ZONE_1].add_event(00.00, PROJECTOR_EVENT)
+    trigger_events[ZONE_1].add_event(00.80, WITCH_HOUSE_EVENT_1)
+    trigger_events[ZONE_1].add_event(00.90, WITCH_HOUSE_EVENT_2)
+    trigger_events[ZONE_1].add_event(01.00, FIRE_EVENT)
+    trigger_events[ZONE_1].add_event(01.10, CAULDRON_EVENT)
+    trigger_events[ZONE_1].add_event(01.20, WITCH_EVENT)
+    trigger_events[ZONE_1].add_event(02.00, GRAVEYARD_EVENT)
 
 
     async def trigger_node(node: str) -> None:
@@ -86,45 +106,81 @@ if __name__ == '__main__':
         send_message("trigger", host=node)
 
 
-    async def start_display() -> None:
-        info("Start display")
-        trigger_events.start()
+    def get_zone_start(zone: int):
+        async def start_display() -> None:
+            info(f"Start display for zone {zone + 1}")
+            trigger_events[zone].start()
+
+        return start_display
 
 
-    async def run_display() -> None:
-        events = trigger_events.run()
+    def get_zone_run(zone: int):
+        async def run_display() -> None:
+            events = trigger_events[zone].run()
 
-        tasks = []
-        for event in events:
-            if event.event >= len(event_to_node):
-                critical(f"Unknown event: {event.event}")
-                continue
+            tasks = []
+            for event in events:
+                if event.event >= len(event_to_node):
+                    critical(f"Unknown event: {event.event}")
+                    continue
 
-            tasks.append(asyncio.create_task(trigger_node(event_to_node[event.event])))
+                tasks.append(asyncio.create_task(trigger_node(event_to_node[event.event])))
 
-
-    async def stop_display() -> None:
-        info("Stop display")
-        trigger_events.stop()
+        return run_display
 
 
-    triggerable = Triggerable()
+    def get_zone_stop(zone: int):
+        async def stop_display() -> None:
+            info(f"Stop display for zone {zone + 1}")
+            trigger_events[zone].stop()
 
-    trigger_loop = new_triggered_task(
-        triggerable,
-        duration=TRIGGER_DURATION,
-        start=start_display,
-        run=run_display,
-        stop=stop_display)
-    runner.add_task(trigger_loop)
+        return stop_display
+
+
+    triggerable = [
+        Triggerable(),
+        Triggerable(),
+        Triggerable(),
+    ]
+
+    for zone in range(3):
+        trigger_loop = new_triggered_task(
+            triggerable[zone],
+            duration=TRIGGER_DURATION,
+            start=get_zone_start(zone),
+            run=get_zone_run(zone),
+            stop=get_zone_stop(zone))
+        runner.add_task(trigger_loop)
 
 
     def network_trigger() -> None:
-        triggerable.triggered = True
+        triggerable[ZONE_1].triggered = True
+        triggerable[ZONE_2].triggered = True
+        triggerable[ZONE_3].triggered = True
+        # TODO: Move this to use its own trigger so we can delay the start of each phase.
 
 
     server = new_server()
     network_controller = NetworkController(server, network_trigger)
     network_controller.register(runner)
+
+
+    def get_network_zone_trigger(zone: int):
+        def trigger(request: Request):
+            if request.method == GET:
+                triggerable[zone].triggered = True
+                return Response(request, f"TRIGGERED {zone + 1}")
+
+            return Response(request, "NO", status=NOT_FOUND_404)
+
+        return trigger
+
+
+    routes = [
+        Route("/trigger_1", GET, get_network_zone_trigger(ZONE_1), append_slash=True),
+        Route("/trigger_2", GET, get_network_zone_trigger(ZONE_2), append_slash=True),
+        Route("/trigger_3", GET, get_network_zone_trigger(ZONE_3), append_slash=True),
+    ]
+    server.add_routes(routes)
 
     runner.run()
