@@ -4,8 +4,6 @@
 # even when the trigger is not activated. The eyes act as an attract to the house.
 #
 
-# TODO: Split the main display nodes into zones that are triggered separately.
-
 import asyncio
 
 from adafruit_httpserver import Route, GET, Response, \
@@ -19,10 +17,6 @@ from interactive.runner import Runner
 from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedEvents, \
     new_scheduled_task
 from nodes import *
-
-# We trigger the eyes and roar constantly as an attract to the house
-EYES_DURATION = 80
-ROAR_DURATION = 20
 
 # The main display length (apart from the projector which will be longer in many cases).
 TRIGGER_DURATION = 45
@@ -57,30 +51,35 @@ if __name__ == '__main__':
     runner.restart_on_completion = False
 
 
-    # Trigger the eyes and roar on repeat.
-    async def trigger_eyes() -> None:
-        asyncio.create_task(trigger_node(EYES))
+    async def trigger_node(node: str) -> None:
+        """
+        Sends a trigger message to the desired node.
+        """
+        info(f"Triggering {node}")
+
+        debug = True
+        if debug:
+            print(f"DEBUG sending trigger message to {node}")
+        else:
+            send_message("trigger", host=node)
 
 
-    async def trigger_roar() -> None:
-        asyncio.create_task(trigger_node(ROAR))
+    ####################################
+    # C O N S T A N T    T R I G G E R S
+    ####################################
+    def schedule(node: str, duration: int):
+        async def trigger() -> None:
+            asyncio.create_task(trigger_node(node))
 
-
-    def add_triggered_tasks():
         runner.add_task(
             new_scheduled_task(
-                trigger_eyes,
-                frequency=1 / EYES_DURATION,
-            ))
-
-        runner.add_task(
-            new_scheduled_task(
-                trigger_roar,
-                frequency=1 / ROAR_DURATION,
+                trigger,
+                frequency=1 / duration,
             ))
 
 
-    add_triggered_tasks()
+    for n, duration in [(EYES, 80), (ROAR, 20)]:
+        schedule(n, duration)
 
     ZONE_1 = 0
     ZONE_2 = 1
@@ -99,11 +98,6 @@ if __name__ == '__main__':
     trigger_events[ZONE_1].add_event(01.10, CAULDRON_EVENT)
     trigger_events[ZONE_1].add_event(01.20, WITCH_EVENT)
     trigger_events[ZONE_1].add_event(02.00, GRAVEYARD_EVENT)
-
-
-    async def trigger_node(node: str) -> None:
-        info(f"Triggering {node}")
-        send_message("trigger", host=node)
 
 
     def get_zone_start(zone: int):
