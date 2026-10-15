@@ -83,18 +83,41 @@ if __name__ == '__main__':
     for n, duration in [(EYES, 80), (ROAR, 20)]:
         schedule_continuous_trigger(n, duration)
 
-
     ################################
     # N E T W O R K    T R I G G E R
     ################################
 
-    # This is triggered from a standard network trigger message. We use
-    # events to trigger the zones at timed intervals.
+    network_trigger_events = TriggerTimedEvents()
+    network_trigger_events.add_event(00.00, ZONE_1)
+    network_trigger_events.add_event(00.00, ZONE_2)
+    network_trigger_events.add_event(00.80, ZONE_3)
+
+
+    async def start_display() -> None:
+        info("Start display")
+        network_trigger_events.start()
+
+
+    async def run_display() -> None:
+        events = network_trigger_events.run()
+
+        for event in events:
+            if event.event >= len(zone_triggers):
+                critical(f"Unknown zone: {event.event}")
+                continue
+
+            zone_triggers[event.event].triggered = True
+
+
+    async def stop_display() -> None:
+        info(f"Stop display")
+        network_trigger_events.stop()
+
 
     def network_trigger() -> None:
-        triggerable[ZONE_1].triggered = True
-        triggerable[ZONE_2].triggered = True
-        triggerable[ZONE_3].triggered = True
+        zone_triggers[ZONE_1].triggered = True
+        zone_triggers[ZONE_2].triggered = True
+        zone_triggers[ZONE_3].triggered = True
         # TODO: Move this to use its own trigger so we can delay the start of each phase.
 
 
@@ -114,33 +137,33 @@ if __name__ == '__main__':
     ZONE_3 = 2
     zones = [ZONE_1, ZONE_2, ZONE_3]
 
-    trigger_events = [
+    zone_events = [
         TriggerTimedEvents(),
         TriggerTimedEvents(),
         TriggerTimedEvents(),
     ]
 
-    trigger_events[ZONE_1].add_event(00.00, PATH_EVENT)
-    trigger_events[ZONE_1].add_event(00.00, PROJECTOR_EVENT)
-    trigger_events[ZONE_1].add_event(00.80, WITCH_HOUSE_EVENT_1)
-    trigger_events[ZONE_1].add_event(00.90, WITCH_HOUSE_EVENT_2)
-    trigger_events[ZONE_1].add_event(01.00, FIRE_EVENT)
-    trigger_events[ZONE_1].add_event(01.10, CAULDRON_EVENT)
-    trigger_events[ZONE_1].add_event(01.20, WITCH_EVENT)
-    trigger_events[ZONE_1].add_event(02.00, GRAVEYARD_EVENT)
+    zone_events[ZONE_1].add_event(00.00, PATH_EVENT)
+    zone_events[ZONE_1].add_event(00.00, PROJECTOR_EVENT)
+    zone_events[ZONE_1].add_event(00.80, WITCH_HOUSE_EVENT_1)
+    zone_events[ZONE_1].add_event(00.90, WITCH_HOUSE_EVENT_2)
+    zone_events[ZONE_1].add_event(01.00, FIRE_EVENT)
+    zone_events[ZONE_1].add_event(01.10, CAULDRON_EVENT)
+    zone_events[ZONE_1].add_event(01.20, WITCH_EVENT)
+    zone_events[ZONE_1].add_event(02.00, GRAVEYARD_EVENT)
 
 
     def create_zone_start(zone: int):
         async def start_display() -> None:
             info(f"Start display for zone {zone + 1}")
-            trigger_events[zone].start()
+            zone_events[zone].start()
 
         return start_display
 
 
     def create_zone_run(zone: int):
         async def run_display() -> None:
-            events = trigger_events[zone].run()
+            events = zone_events[zone].run()
 
             tasks = []
             for event in events:
@@ -156,12 +179,12 @@ if __name__ == '__main__':
     def create_zone_stop(zone: int):
         async def stop_display() -> None:
             info(f"Stop display for zone {zone + 1}")
-            trigger_events[zone].stop()
+            zone_events[zone].stop()
 
         return stop_display
 
 
-    triggerable = [
+    zone_triggers = [
         Triggerable(),
         Triggerable(),
         Triggerable(),
@@ -169,7 +192,7 @@ if __name__ == '__main__':
 
     for zone in zones:
         trigger_loop = new_triggered_task(
-            triggerable[zone],
+            zone_triggers[zone],
             duration=TRIGGER_DURATION,
             start=create_zone_start(zone),
             run=create_zone_run(zone),
@@ -180,7 +203,7 @@ if __name__ == '__main__':
     def create_zone_trigger(zone: int):
         def trigger(request: Request):
             if request.method == GET:
-                triggerable[zone].triggered = True
+                zone_triggers[zone].triggered = True
                 return Response(request, f"TRIGGERED {zone + 1}")
 
             return Response(request, "NO", status=NOT_FOUND_404)
