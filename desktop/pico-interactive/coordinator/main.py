@@ -67,7 +67,9 @@ if __name__ == '__main__':
     ####################################
     # C O N S T A N T    T R I G G E R S
     ####################################
-    def schedule(node: str, duration: int):
+    # These triggers fire on a continuous basis, never stopping.
+
+    def schedule_continuous_trigger(node: str, duration: int):
         async def trigger() -> None:
             asyncio.create_task(trigger_node(node))
 
@@ -79,17 +81,45 @@ if __name__ == '__main__':
 
 
     for n, duration in [(EYES, 80), (ROAR, 20)]:
-        schedule(n, duration)
+        schedule_continuous_trigger(n, duration)
+
+
+    ################################
+    # N E T W O R K    T R I G G E R
+    ################################
+
+    # This is triggered from a standard network trigger message. We use
+    # events to trigger the zones at timed intervals.
+
+    def network_trigger() -> None:
+        triggerable[ZONE_1].triggered = True
+        triggerable[ZONE_2].triggered = True
+        triggerable[ZONE_3].triggered = True
+        # TODO: Move this to use its own trigger so we can delay the start of each phase.
+
+
+    server = new_server()
+    network_controller = NetworkController(server, network_trigger)
+    network_controller.register(runner)
+
+    ############################
+    # Z O N E    T R I G G E R S
+    ############################
+
+    # Each zone has its own trigger URL that allows then to be independently
+    # controlled by different sensors.
 
     ZONE_1 = 0
     ZONE_2 = 1
     ZONE_3 = 2
+    zones = [ZONE_1, ZONE_2, ZONE_3]
 
     trigger_events = [
         TriggerTimedEvents(),
         TriggerTimedEvents(),
         TriggerTimedEvents(),
     ]
+
     trigger_events[ZONE_1].add_event(00.00, PATH_EVENT)
     trigger_events[ZONE_1].add_event(00.00, PROJECTOR_EVENT)
     trigger_events[ZONE_1].add_event(00.80, WITCH_HOUSE_EVENT_1)
@@ -100,7 +130,7 @@ if __name__ == '__main__':
     trigger_events[ZONE_1].add_event(02.00, GRAVEYARD_EVENT)
 
 
-    def get_zone_start(zone: int):
+    def create_zone_start(zone: int):
         async def start_display() -> None:
             info(f"Start display for zone {zone + 1}")
             trigger_events[zone].start()
@@ -108,7 +138,7 @@ if __name__ == '__main__':
         return start_display
 
 
-    def get_zone_run(zone: int):
+    def create_zone_run(zone: int):
         async def run_display() -> None:
             events = trigger_events[zone].run()
 
@@ -123,7 +153,7 @@ if __name__ == '__main__':
         return run_display
 
 
-    def get_zone_stop(zone: int):
+    def create_zone_stop(zone: int):
         async def stop_display() -> None:
             info(f"Stop display for zone {zone + 1}")
             trigger_events[zone].stop()
@@ -137,29 +167,17 @@ if __name__ == '__main__':
         Triggerable(),
     ]
 
-    for zone in range(3):
+    for zone in zones:
         trigger_loop = new_triggered_task(
             triggerable[zone],
             duration=TRIGGER_DURATION,
-            start=get_zone_start(zone),
-            run=get_zone_run(zone),
-            stop=get_zone_stop(zone))
+            start=create_zone_start(zone),
+            run=create_zone_run(zone),
+            stop=create_zone_stop(zone))
         runner.add_task(trigger_loop)
 
 
-    def network_trigger() -> None:
-        triggerable[ZONE_1].triggered = True
-        triggerable[ZONE_2].triggered = True
-        triggerable[ZONE_3].triggered = True
-        # TODO: Move this to use its own trigger so we can delay the start of each phase.
-
-
-    server = new_server()
-    network_controller = NetworkController(server, network_trigger)
-    network_controller.register(runner)
-
-
-    def get_network_zone_trigger(zone: int):
+    def create_zone_trigger(zone: int):
         def trigger(request: Request):
             if request.method == GET:
                 triggerable[zone].triggered = True
@@ -171,9 +189,9 @@ if __name__ == '__main__':
 
 
     routes = [
-        Route("/trigger_1", GET, get_network_zone_trigger(ZONE_1), append_slash=True),
-        Route("/trigger_2", GET, get_network_zone_trigger(ZONE_2), append_slash=True),
-        Route("/trigger_3", GET, get_network_zone_trigger(ZONE_3), append_slash=True),
+        Route("/trigger_1", GET, create_zone_trigger(ZONE_1), append_slash=True),
+        Route("/trigger_2", GET, create_zone_trigger(ZONE_2), append_slash=True),
+        Route("/trigger_3", GET, create_zone_trigger(ZONE_3), append_slash=True),
     ]
     server.add_routes(routes)
 
