@@ -97,8 +97,8 @@ down by framework.
 * Cauldron: Witch House, Mark III node, single microcontroller, battery powered - `cptkip`
     * Also has atomiser in the cauldron.
 * Hazel: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* House 1: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* House 2: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Sound 1: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Sound 2: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 
 **Path**
 

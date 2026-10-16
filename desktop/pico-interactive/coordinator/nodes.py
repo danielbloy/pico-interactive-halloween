@@ -15,9 +15,10 @@ CAULDRON = "192.168.1.80:80"
 # Node for the path.
 PATH = "192.168.1.250:80"
 
-# Nodes for the graveyard installation.
+# Nodes for the graveyard and front door installation.
 GRAVEYARD = "192.168.1.225:80"
-EXTRA = "192.168.1.128:80"
+FRONT_DOOR = "192.168.1.128:80"
+# TODO: Add in the 3 extra `cptkip` nodes.
 
 # Projector node: Lenovo Laptop
 PROJECTOR = "192.168.1.248:5001"
