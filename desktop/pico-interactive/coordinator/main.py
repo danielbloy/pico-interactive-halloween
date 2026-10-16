@@ -9,7 +9,7 @@ import asyncio
 from adafruit_httpserver import Route, GET, Response, \
     Request, NOT_FOUND_404
 
-from interactive.log import critical
+from interactive.log import critical, debug
 from interactive.log import info
 from interactive.network import NetworkController, send_message
 from interactive.polyfills.network import new_server
@@ -18,18 +18,25 @@ from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedE
     new_scheduled_task
 from nodes import *
 
-# The main display length (apart from the projector which will be longer in many cases).
-DISPLAY_DURATION = 45
-ZONE_1_DURATION = 45  # TODO: This should be specified per zone.
-ZONE_2_DURATION = 45  # TODO: This should be specified per zone.
-ZONE_3_DURATION = 45  # TODO: This should be specified per zone.
+DEBUG = True  # TODO: Set to False
 
-# Each zone has its own trigger URL that allows then to be independently
-# controlled by different sensors.
+# The main display length (apart from the projector which will be longer in many cases)
+# and the duration for each of the zones.
+DISPLAY_DURATION = 45  # This is 5 seconds longer than the actual display
+ZONE_1_DURATION = 45  # This is 5 seconds longer than the actual display
+ZONE_2_DURATION = 45  # This is 5 seconds longer than the actual display
+ZONE_3_DURATION = 45  # This is 5 seconds longer than the actual display
 
-ZONE_1 = 0
-ZONE_2 = 1
-ZONE_3 = 2
+# TODO: Reduce the witches node to 30 seconds.
+# TODO: Rework sounds and timing for the witches nodes.
+
+# Each zone has its own trigger URL that allows it to be independently
+# triggered by a different sensor.
+
+ZONE_1 = 0  # Path and graveyard
+ZONE_2 = 1  # Front door
+ZONE_3 = 2  # Witches house
+
 zones = [ZONE_1, ZONE_2, ZONE_3]
 
 zone_triggers = [
@@ -50,7 +57,8 @@ zone_events = [
     TriggerTimedEvents(),
 ]
 
-# Events are indexes into the event_to_path node
+# These constants are indexes into the event_to_path node and used as events
+# in the triggers.
 PATH_NODE = 0
 WITCH_HOUSE_NODE_1 = 1
 WITCH_HOUSE_NODE_2 = 2
@@ -59,6 +67,7 @@ FIRE_NODE = 4
 WITCH_NODE = 5
 GRAVEYARD_NODE = 6
 PROJECTOR_NODE = 7
+FRONT_DOOR_NODE = 8
 
 event_to_node = [
     PATH,
@@ -68,18 +77,22 @@ event_to_node = [
     FIRE,
     WITCH,
     GRAVEYARD,
-    PROJECTOR
+    PROJECTOR,
+    FRONT_DOOR
 ]
 
-# TODO: Move events to correct zones for timing.
 zone_events[ZONE_1].add_event(00.00, PATH_NODE)
 zone_events[ZONE_1].add_event(00.00, PROJECTOR_NODE)
-zone_events[ZONE_1].add_event(00.80, WITCH_HOUSE_NODE_1)
-zone_events[ZONE_1].add_event(00.90, WITCH_HOUSE_NODE_2)
-zone_events[ZONE_1].add_event(01.00, FIRE_NODE)
-zone_events[ZONE_1].add_event(01.10, CAULDRON_NODE)
-zone_events[ZONE_1].add_event(01.20, WITCH_NODE)
 zone_events[ZONE_1].add_event(02.00, GRAVEYARD_NODE)
+
+zone_events[ZONE_2].add_event(00.00, FRONT_DOOR_NODE)
+# TODO: Add in the 3 `cptkip` nodes.
+
+zone_events[ZONE_3].add_event(00.00, WITCH_HOUSE_NODE_1)
+zone_events[ZONE_3].add_event(00.00, WITCH_HOUSE_NODE_2)
+zone_events[ZONE_3].add_event(00.00, FIRE_NODE)
+zone_events[ZONE_3].add_event(00.00, CAULDRON_NODE)
+zone_events[ZONE_3].add_event(00.00, WITCH_NODE)
 
 network_trigger = Triggerable()
 
@@ -103,9 +116,8 @@ if __name__ == '__main__':
         """
         info(f"Triggering {node}")
 
-        debug = True  # TODO: Set to False
-        if debug:
-            print(f"DEBUG sending trigger message to {node}")
+        if DEBUG:
+            debug(f"Sending trigger message to {node}")
         else:
             send_message("trigger", host=node)
 
