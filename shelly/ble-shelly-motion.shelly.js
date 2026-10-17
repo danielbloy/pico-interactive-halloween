@@ -7,8 +7,9 @@
  */
 
 /******************* START CHANGE HERE *******************/
-let WEBHOOK_URL = "http://192.168.99:5001/trigger";
-let WEBHOOK_URL = "http://192.168.1.175/trigger";
+let HOST = "192.168.99:5001/";
+let HOST = "192.168.1.175/";
+
 
 let CONFIG = {
     // When set to true, debug messages will be logged to the console
@@ -22,8 +23,14 @@ let CONFIG = {
     // allowedMacAddresses: null,
     allowedMacAddresses: [
         "b0:c7:de:7f:09:18", // events only from these mac addresses are allowed.
+        "b0:c7:de:7f:73:60",
+        "b0:c7:de:7e:76:52",
     ],
-
+    endpoints: [
+        "trigger_1", // events only from these mac addresses are allowed.
+        "trigger_2",
+        "trigger_3",
+    ],
     /**
      * Called when motion is reported from the filtered Shelly BLU Motion devices.
      * @param {Boolean} motion true, when there is a motion, false otherwise.
@@ -32,11 +39,14 @@ let CONFIG = {
     motionHandler: function (motion, eventData) {
         // Toggle the first replay ON/OFF based on the motion value.
         Shelly.call("Switch.Set", {id: 0, on: motion});
-        console.log("Motion", motion);
-        if (motion) {
+        console.log("Motion detected:", motion, "from", eventData.address);
+        let index = this.allowedMacAddresses.indexOf(eventData.address.toLowerCase())
+        if (motion && index >= 0) {
+            let url = "http://" + HOST + this.endpoints[index]
+            console.log("Calling URL", url)
             Shelly.call(
                 "HTTP.GET",
-                {url: WEBHOOK_URL},
+                {url: url},
                 function (response, error_code, error_message) {
                     if (error_code === 0) {
                         print("HTTP request successful: " + response.body);
@@ -67,7 +77,6 @@ let CONFIG = {
 };
 /******************* STOP CHANGE HERE *******************/
 
-const ALLTERCO_MFD_ID_STR = "0ba9";
 const BTHOME_SVC_ID_STR = "fcd2";
 
 const uint8 = 0;
