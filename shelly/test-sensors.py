@@ -5,6 +5,7 @@ import cptkip.config.configuration as config
 from cptkip.core.environment import is_running_on_desktop
 from cptkip.core.logging import info
 from cptkip.network.biplane import Server, Response
+from cptkip.pin.output_pin import OutputPin
 from cptkip.task import memory_monitor_task
 from cptkip.task.basic_runner import run
 from cptkip.task.triggered_task import create as create_triggered_task
@@ -34,14 +35,23 @@ info(f"TRIGGER_DURATION: {duration}")
 
 triggers = [False, False, False]
 
+leds = [
+    OutputPin(config.LED_PIN_1),
+    OutputPin(config.LED_PIN_2),
+    OutputPin(config.LED_PIN_3)
+]
+
+for led in leds:
+    led.off()
+
 
 def begin_display(trigger: int) -> None:
-    # TODO: LEDs
+    leds[trigger].on()
     info(f"Start {trigger + 1}")
 
 
 def end_display(trigger: int) -> None:
-    # TODO: LEDs
+    leds[trigger].off()
     info(f"Stop {trigger + 1}")
 
 
