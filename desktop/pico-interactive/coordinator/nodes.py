@@ -1,5 +1,6 @@
 # Coordinator (Desktop)
 COORDINATOR = "192.168.1.99:5001"
+SHELLY_GATEWAY = "192.168.1.86:80"
 
 # Trigger nodes; only sends, does not receive.
 ULTRASONIC_1 = "192.168.1.72:80"
