@@ -23,12 +23,9 @@ DEBUG = True  # TODO: Set to False
 # The main display length (apart from the projector which will be longer in many cases)
 # and the duration for each of the zones.
 DISPLAY_DURATION = 45  # This is 5 seconds longer than the actual display
-ZONE_1_DURATION = 45  # This is 5 seconds longer than the actual display
-ZONE_2_DURATION = 45  # This is 5 seconds longer than the actual display
-ZONE_3_DURATION = 45  # This is 5 seconds longer than the actual display
-
-# TODO: Reduce the witches node to 30 seconds.
-# TODO: Rework sounds and timing for the witches nodes.
+ZONE_1_DURATION = 45  # Path: This is 5 seconds longer than the actual display
+ZONE_2_DURATION = 45  # Graveyard: This is 5 seconds longer than the actual display
+ZONE_3_DURATION = 30  # Witch House, this is 5 seconds longer than the actual display
 
 # Each zone has its own trigger URL that allows it to be independently
 # triggered by a different sensor.
