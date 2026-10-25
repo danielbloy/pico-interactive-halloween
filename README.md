@@ -8,14 +8,14 @@ This project has been moved from https://github.com/danielbloy/pico-interactive/
 These videos don't quite do it justice but are good enough to get an idea
 of what the finished halloween projects look like.
 
-Halloween
-2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
+Halloween 2026 [notes](./2026.md), [pictures](showcase/2026/overview.md).
+
+Halloween 2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
 
 Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
 
-Halloween 2023 [video on YouTube](https://youtu.be/a0I0U5x334Y), the full code for Halloween 2023
-can be
-found at https://github.com/danielbloy/pico-interactive-origins.
+Halloween 2023 [video on YouTube](https://youtu.be/a0I0U5x334Y), the full code can
+be found at [pico-interactive-origins](https://github.com/danielbloy/pico-interactive-origins).
 
 My daughter loves Halloween and after Halloween 2022 (she was 8 years old at the
 time) we discussed using some of the electronics that I use in my Coding Clubs to
