@@ -35,12 +35,11 @@ audio_controller.register(runner)
 
 # The event is the skull index to enable
 trigger_events = TriggerTimedEvents()
-trigger_events.add_event(0.0, 0)
-trigger_events.add_event(7.0, 2)
-trigger_events.add_event(14.0, 3)
-trigger_events.add_event(21.0, 4)
-trigger_events.add_event(28.0, 1)
-trigger_events.add_event(35.0, 0)
+trigger_events.add_event(0.0, 0)  # 3 seconds: Laugh
+trigger_events.add_event(5.0, 1)  # 2 seconds: Come in
+trigger_events.add_event(10.0, 2)  # 6 seconds
+trigger_events.add_event(17.0, 3)  # 4 seconds
+trigger_events.add_event(27.0, 0)  # 3 seconds: Laugh
 
 
 async def start_display() -> None:
@@ -61,28 +60,24 @@ async def run_display() -> None:
         pick = random.randint(0, 2)
 
         if event.event == 0:
-            audio_controller.queue("witch-laugh.mp3")
+            audio_controller.queue("witch-laugh.mp3")  # 3 seconds
 
         elif event.event == 1:
-            audio_controller.queue("witch-thumbs.mp3")
+            audio_controller.queue("come_in.mp3")  # 2 seconds
 
         elif event.event == 2:
             if pick == 0:
-                audio_controller.queue("you_look_so_interesting.mp3")
+                audio_controller.queue("you_look_so_interesting.mp3")  # 5 seconds
+            elif pick == 1:
+                audio_controller.queue("aww_you_look_so_good.mp3")  # 4 seconds
             else:
-                audio_controller.queue("aww_you_look_so_good.mp3")
+                audio_controller.queue("witch-thumbs.mp3")  # 6 seconds
 
         elif event.event == 3:
             if pick == 0:
-                audio_controller.queue("are_you_afraid_my_dear.mp3")
+                audio_controller.queue("did_you_run_away_from_home.mp3")  # 4 seconds
             else:
-                audio_controller.queue("are_you_afraid_of_the_dark_my_dear.mp3")
-
-        elif event.event == 4:
-            if pick == 0:
-                audio_controller.queue("did_you_run_away_from_home.mp3")
-            else:
-                audio_controller.queue("laugh_i_will_find_you.mp3")
+                audio_controller.queue("are_you_afraid_my_dear.mp3")  # 4 seconds
 
 
 async def stop_display() -> None:
