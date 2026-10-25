@@ -18,9 +18,9 @@ PATH = "192.168.1.250:80"
 
 # Nodes for the graveyard and front door installation.
 GRAVEYARD = "192.168.1.225:80"
-FRONT_DOOR = "192.168.1.128:80"
+FRONT_DOOR = "TODO"
 CROWS = "TODO"
-WOLVES = "TODO"
+WOLVES = "192.168.1.128:80"
 # GHOSTS = "TODO"
 # Atmospheric - door
 
