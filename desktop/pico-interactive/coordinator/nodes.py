@@ -8,8 +8,8 @@ ULTRASONIC_2 = "192.168.1.84:80"
 
 # Nodes for the witch installation.
 WITCH = "192.168.1.108:80"
-WITCH_HOUSE_1 = "192.168.1.200:80"
-WITCH_HOUSE_2 = "192.168.1.198:80"
+WITCH_MUSIC_BOX = "192.168.1.200:80"
+WITCH_HOUSE_2 = "192.168.1.198:80"  # TODO: Rename
 FIRE = "192.168.1.165:80"
 CAULDRON = "192.168.1.80:80"
 
@@ -19,7 +19,10 @@ PATH = "192.168.1.250:80"
 # Nodes for the graveyard and front door installation.
 GRAVEYARD = "192.168.1.225:80"
 FRONT_DOOR = "192.168.1.128:80"
-# TODO: Add in the 3 extra `cptkip` nodes.
+CROWS = "TODO"
+WOLVES = "TODO"
+# GHOSTS = "TODO"
+# Atmospheric - door
 
 # Projector node: Lenovo Laptop
 PROJECTOR = "192.168.1.248:5001"
