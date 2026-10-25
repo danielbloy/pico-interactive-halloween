@@ -1,3 +1,5 @@
+import random
+
 from interactive.audio import AudioController
 from interactive.button import ButtonController
 from interactive.configuration import AUDIO_PIN, TRIGGER_DURATION, TRIGGER_PIN
@@ -23,11 +25,6 @@ audio_controller.register(runner)
 # The event is the skull index to enable
 trigger_events = TriggerTimedEvents()
 trigger_events.add_event(0.0, 0)
-trigger_events.add_event(7.0, 2)
-trigger_events.add_event(14.0, 3)
-trigger_events.add_event(21.0, 4)
-trigger_events.add_event(28.0, 1)
-trigger_events.add_event(35.0, 0)
 
 
 async def start_display() -> None:
@@ -36,35 +33,14 @@ async def start_display() -> None:
 
 async def run_display() -> None:
     events = trigger_events.run()
-    # TODO: Pick sounds and events.
 
     for event in events:
-        import random
-        pick = random.randint(0, 2)
-
+        pick = random.randint(0, 1)
         if event.event == 0:
-            audio_controller.queue("witch-laugh.mp3")
-
-        elif event.event == 1:
-            audio_controller.queue("witch-thumbs.mp3")
-
-        elif event.event == 2:
             if pick == 0:
-                audio_controller.queue("you_look_so_interesting.mp3")
+                audio_controller.queue("untuned-music-box-1.mp3")
             else:
-                audio_controller.queue("aww_you_look_so_good.mp3")
-
-        elif event.event == 3:
-            if pick == 0:
-                audio_controller.queue("are_you_afraid_my_dear.mp3")
-            else:
-                audio_controller.queue("are_you_afraid_of_the_dark_my_dear.mp3")
-
-        elif event.event == 4:
-            if pick == 0:
-                audio_controller.queue("did_you_run_away_from_home.mp3")
-            else:
-                audio_controller.queue("laugh_i_will_find_you.mp3")
+                audio_controller.queue("untuned-music-box-2.mp3")
 
 
 async def stop_display() -> None:
