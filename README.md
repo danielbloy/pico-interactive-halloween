@@ -99,7 +99,7 @@ down by framework.
     * Also has atomiser in the cauldron.
 * Hazel: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 * Music box: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* Sound 2: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Monsters: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 
 **Path**
 
