@@ -67,6 +67,7 @@ PROJECTOR_NODE = 7
 FRONT_DOOR_NODE = 8
 CROWS_NODE = 9
 WOLVES_NODE = 10
+GHOSTS_NODE = 11
 
 event_to_node = [
     PATH,  # 0
@@ -79,16 +80,18 @@ event_to_node = [
     PROJECTOR,  # 7
     FRONT_DOOR,  # 8
     CROWS,  # 9
-    WOLVES  # 10
+    WOLVES,  # 10
+    GHOSTS,  # 11
 ]
 
 zone_events[ZONE_1].add_event(00.00, PATH_NODE)
 zone_events[ZONE_1].add_event(00.00, PROJECTOR_NODE)
+zone_events[ZONE_1].add_event(00.00, CROWS_NODE)
+zone_events[ZONE_1].add_event(00.00, WOLVES_NODE)
+zone_events[ZONE_1].add_event(00.00, GHOSTS_NODE)
 zone_events[ZONE_1].add_event(02.00, GRAVEYARD_NODE)
 
 zone_events[ZONE_2].add_event(00.00, FRONT_DOOR_NODE)
-zone_events[ZONE_2].add_event(00.00, CROWS_NODE)
-zone_events[ZONE_2].add_event(00.00, WOLVES_NODE)
 # TODO: Add in the remaining `cptkip` nodes.
 
 zone_events[ZONE_3].add_event(00.00, FIRE_NODE)
