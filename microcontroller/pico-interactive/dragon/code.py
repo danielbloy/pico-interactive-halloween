@@ -20,14 +20,14 @@ runner.restart_on_completion = False
 audio_controller = AudioController(new_mp3_player(AUDIO_PIN, "interactive/mp3.mp3"))
 audio_controller.register(runner)
 
-# The event is the skull index to enable
+# The event is the index to enable
 trigger_events = TriggerTimedEvents()
-trigger_events.add_event(0.0, 0)
-trigger_events.add_event(7.0, 2)
-trigger_events.add_event(14.0, 3)
-trigger_events.add_event(21.0, 4)
-trigger_events.add_event(28.0, 1)
-trigger_events.add_event(35.0, 0)
+trigger_events.add_event(0.0, 0)  # Growl
+trigger_events.add_event(5.0, 1)  # Flapping wings - 10 seconds
+trigger_events.add_event(15.0, 0)  # Growl
+trigger_events.add_event(20.0, 2)  # Roar
+trigger_events.add_event(30.0, 1)  # Flapping wings - 10 seconds
+trigger_events.add_event(40.0, 0)  # Growl
 
 
 async def start_display() -> None:
@@ -36,35 +36,40 @@ async def start_display() -> None:
 
 async def run_display() -> None:
     events = trigger_events.run()
-    # TODO: Pick sounds and events.
 
     for event in events:
         import random
-        pick = random.randint(0, 2)
 
         if event.event == 0:
-            audio_controller.queue("witch-laugh.mp3")
+            pick = random.randint(0, 4)
+            if pick == 0:
+                audio_controller.queue("dragon-growl-1.mp3")
+            elif pick == 1:
+                audio_controller.queue("dragon-growl-2.mp3")
+            elif pick == 2:
+                audio_controller.queue("dragon-growl-3.mp3")
+            elif pick == 3:
+                audio_controller.queue("dragon-growl-4.mp3")
+            else:
+                audio_controller.queue("dragon-growl-5.mp3")
 
         elif event.event == 1:
-            audio_controller.queue("witch-thumbs.mp3")
+            pick = random.randint(0, 1)
+            if pick == 0:
+                audio_controller.queue("dragon-flapping-wings-1.mp3")
+            else:
+                audio_controller.queue("dragon-flapping-wings-2.mp3")
 
         elif event.event == 2:
+            pick = random.randint(0, 3)
             if pick == 0:
-                audio_controller.queue("you_look_so_interesting.mp3")
+                audio_controller.queue("dragon-roar-1.mp3")
+            elif pick == 1:
+                audio_controller.queue("dragon-roar-2.mp3")
+            elif pick == 2:
+                audio_controller.queue("dragon-roar-3.mp3")
             else:
-                audio_controller.queue("aww_you_look_so_good.mp3")
-
-        elif event.event == 3:
-            if pick == 0:
-                audio_controller.queue("are_you_afraid_my_dear.mp3")
-            else:
-                audio_controller.queue("are_you_afraid_of_the_dark_my_dear.mp3")
-
-        elif event.event == 4:
-            if pick == 0:
-                audio_controller.queue("did_you_run_away_from_home.mp3")
-            else:
-                audio_controller.queue("laugh_i_will_find_you.mp3")
+                audio_controller.queue("dragon-roar-4.mp3")
 
 
 async def stop_display() -> None:
