@@ -10,7 +10,8 @@ of what the finished halloween projects look like.
 
 Halloween 2026 [notes](./2026.md), [pictures](showcase/2026/overview.md).
 
-Halloween 2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
+Halloween
+2025 [notes](./2025.md), [pictures](showcase/2025/overview.md), [video on YouTube](https://www.youtube.com/shorts/VWgEQCHVglk)
 
 Halloween 2024 [notes](./2024.md), [video on YouTube](https://youtu.be/h3QauCqTOTw)
 
@@ -97,8 +98,8 @@ down by framework.
 * Cauldron: Witch House, Mark III node, single microcontroller, battery powered - `cptkip`
     * Also has atomiser in the cauldron.
 * Hazel: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* Sound 1: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
-* Sound 2: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Music box: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
+* Monsters: Witch House, Mark I node, dual microcontroller, battery powered - `pico-interactive`
 
 **Path**
 
@@ -118,7 +119,7 @@ down by framework.
 
 * Skeleton will be in front of the door to block it.
 * Fire: Door, custom device, single microcontroller, battery powered - custom software
-* House 1 sound: Door, Mark III node, single microcontroller, battery powered - `cptkip`
+* Front Door: Door, Mark III node, single microcontroller, battery powered - `cptkip`
 
 ## Nodes running `cptkip`
 

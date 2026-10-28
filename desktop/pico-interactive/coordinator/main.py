@@ -57,39 +57,47 @@ zone_events = [
 # These constants are indexes into the event_to_path node and used as events
 # in the triggers.
 PATH_NODE = 0
-WITCH_HOUSE_NODE_1 = 1
-WITCH_HOUSE_NODE_2 = 2
+MUSIC_BOX_NODE = 1
+DRAGON_NODE = 2
 CAULDRON_NODE = 3
-FIRE_NODE = 4
+WITCH_FIRE_NODE = 4
 WITCH_NODE = 5
 GRAVEYARD_NODE = 6
 PROJECTOR_NODE = 7
-FRONT_DOOR_NODE = 8
+HOUSE_FIRE_NODE = 8
+CROWS_NODE = 9
+WOLVES_NODE = 10
+GHOSTS_NODE = 11
 
 event_to_node = [
-    PATH,
-    WITCH_HOUSE_1,
-    WITCH_HOUSE_2,
-    CAULDRON,
-    FIRE,
-    WITCH,
-    GRAVEYARD,
-    PROJECTOR,
-    FRONT_DOOR
+    PATH,  # 0
+    MUSIC_BOX,  # 1
+    DRAGON,  # 2
+    CAULDRON,  # 3
+    WITCH_FIRE,  # 4
+    WITCH,  # 5
+    GRAVEYARD,  # 6
+    PROJECTOR,  # 7
+    HOUSE_FIRE,  # 8
+    CROWS,  # 9
+    WOLVES,  # 10
+    GHOSTS,  # 11
 ]
 
 zone_events[ZONE_1].add_event(00.00, PATH_NODE)
 zone_events[ZONE_1].add_event(00.00, PROJECTOR_NODE)
+zone_events[ZONE_1].add_event(00.00, CROWS_NODE)
+zone_events[ZONE_1].add_event(00.00, WOLVES_NODE)
+zone_events[ZONE_1].add_event(00.00, GHOSTS_NODE)
 zone_events[ZONE_1].add_event(02.00, GRAVEYARD_NODE)
 
-zone_events[ZONE_2].add_event(00.00, FRONT_DOOR_NODE)
-# TODO: Add in the 3 `cptkip` nodes.
+zone_events[ZONE_2].add_event(00.00, HOUSE_FIRE_NODE)
+zone_events[ZONE_2].add_event(00.00, DRAGON_NODE)
 
-zone_events[ZONE_3].add_event(00.00, WITCH_HOUSE_NODE_1)
-zone_events[ZONE_3].add_event(00.00, WITCH_HOUSE_NODE_2)
-zone_events[ZONE_3].add_event(00.00, FIRE_NODE)
+zone_events[ZONE_3].add_event(00.00, WITCH_FIRE_NODE)
 zone_events[ZONE_3].add_event(00.00, CAULDRON_NODE)
 zone_events[ZONE_3].add_event(00.00, WITCH_NODE)
+zone_events[ZONE_3].add_event(00.00, MUSIC_BOX_NODE)
 
 network_trigger = Triggerable()
 

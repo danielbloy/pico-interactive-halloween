@@ -1,0 +1,48 @@
+# Rename this to code.py on the CircuitPython device.
+# This code runs event triggered sounds.
+from random import randint
+
+import cptkip.config.configuration as config
+from cptkip.core.logging import info
+from cptkip.task.triggered_events_task import create, Trigger
+# noinspection unused-imports
+from cptkip.zero.audio import create_i2s_queue
+# noinspection unused-imports
+from cptkip.zero.audio import create_pwm_queue
+
+
+# TODO: Uncomment the appropriate queue based on target device
+# queue = create_pwm_queue()
+# queue = create_i2s_queue()
+
+
+def begin_display() -> None:
+    trigger.triggered = True
+
+
+def run_display() -> None:
+    queue.update()
+
+
+def end_display() -> None:
+    queue.cancel()
+
+
+trigger = Trigger(False)
+
+
+def queue_sound(choice: str | tuple[str, str]) -> None:
+    if isinstance(choice, str):
+        file = choice
+    else:
+        file = choice[randint(0, len(choice) - 1)]
+
+    info(f"Queueing sound: {file}")
+    queue.queue(file)
+
+
+events_task = create(trigger, config.EVENTS, callback=queue_sound, continue_func=lambda: True)
+
+from network import execute
+
+execute(begin_display, run_display, end_display, events_task)

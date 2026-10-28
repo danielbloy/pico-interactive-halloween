@@ -5,5 +5,13 @@ PIXELS_SPEED = 0.03
 PIXELS_COLOUR = (0, 255, 0)
 PIXELS_COUNT = 30
 
-REPORT_RAM = True
+EVENTS = [
+    (0.0, "FILE A"),
+    (10.0, ("FILE B1", "FILE B2")),
+    (20.0, "FILE C"),
+    (30.0, ("FILE D1", "FILE D2", "FILE D3")),
+    (40.0, "FILE E"),
+]
+
+REPORT_RAM = False
 TRIGGER_DURATION = 40
