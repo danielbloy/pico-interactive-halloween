@@ -60,11 +60,11 @@ PATH_NODE = 0
 MUSIC_BOX_NODE = 1
 MONSTERS_NODE = 2
 CAULDRON_NODE = 3
-FIRE_NODE = 4
+WITCH_FIRE_NODE = 4
 WITCH_NODE = 5
 GRAVEYARD_NODE = 6
 PROJECTOR_NODE = 7
-AMBIENCE_NODE = 8
+HOUSE_FIRE_NODE = 8
 CROWS_NODE = 9
 WOLVES_NODE = 10
 GHOSTS_NODE = 11
@@ -74,11 +74,11 @@ event_to_node = [
     MUSIC_BOX,  # 1
     MONSTERS,  # 2
     CAULDRON,  # 3
-    FIRE,  # 4
+    WITCH_FIRE,  # 4
     WITCH,  # 5
     GRAVEYARD,  # 6
     PROJECTOR,  # 7
-    AMBIENCE,  # 8
+    HOUSE_FIRE,  # 8
     CROWS,  # 9
     WOLVES,  # 10
     GHOSTS,  # 11
@@ -91,10 +91,10 @@ zone_events[ZONE_1].add_event(00.00, WOLVES_NODE)
 zone_events[ZONE_1].add_event(00.00, GHOSTS_NODE)
 zone_events[ZONE_1].add_event(02.00, GRAVEYARD_NODE)
 
-zone_events[ZONE_2].add_event(00.00, AMBIENCE_NODE)
+zone_events[ZONE_2].add_event(00.00, HOUSE_FIRE_NODE)
 zone_events[ZONE_2].add_event(00.00, MONSTERS_NODE)
 
-zone_events[ZONE_3].add_event(00.00, FIRE_NODE)
+zone_events[ZONE_3].add_event(00.00, WITCH_FIRE_NODE)
 zone_events[ZONE_3].add_event(00.00, CAULDRON_NODE)
 zone_events[ZONE_3].add_event(00.00, WITCH_NODE)
 zone_events[ZONE_3].add_event(00.00, MUSIC_BOX_NODE)
