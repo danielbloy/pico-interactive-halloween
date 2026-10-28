@@ -58,7 +58,7 @@ zone_events = [
 # in the triggers.
 PATH_NODE = 0
 MUSIC_BOX_NODE = 1
-MONSTERS_NODE = 2
+DRAGON_NODE = 2
 CAULDRON_NODE = 3
 WITCH_FIRE_NODE = 4
 WITCH_NODE = 5
@@ -72,7 +72,7 @@ GHOSTS_NODE = 11
 event_to_node = [
     PATH,  # 0
     MUSIC_BOX,  # 1
-    MONSTERS,  # 2
+    DRAGON,  # 2
     CAULDRON,  # 3
     WITCH_FIRE,  # 4
     WITCH,  # 5
@@ -92,7 +92,7 @@ zone_events[ZONE_1].add_event(00.00, GHOSTS_NODE)
 zone_events[ZONE_1].add_event(02.00, GRAVEYARD_NODE)
 
 zone_events[ZONE_2].add_event(00.00, HOUSE_FIRE_NODE)
-zone_events[ZONE_2].add_event(00.00, MONSTERS_NODE)
+zone_events[ZONE_2].add_event(00.00, DRAGON_NODE)
 
 zone_events[ZONE_3].add_event(00.00, WITCH_FIRE_NODE)
 zone_events[ZONE_3].add_event(00.00, CAULDRON_NODE)

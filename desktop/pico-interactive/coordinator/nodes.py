@@ -26,7 +26,7 @@ PROJECTOR = "192.168.1.248:5001"
 ##################
 # Node for the front door and a early triggering node for the witches hut
 HOUSE_FIRE = "192.168.1.82:80"
-MONSTERS = "192.168.1.198:80"
+DRAGON = "192.168.1.198:80"
 
 ######################
 # Z O N E    T H R E E
