@@ -18,7 +18,7 @@ from interactive.scheduler import new_triggered_task, Triggerable, TriggerTimedE
     new_scheduled_task
 from nodes import *
 
-DEBUG = True  # TODO: Set to False
+DEBUG = False
 
 # The main display length (apart from the projector which will be longer in many cases)
 # and the duration for each of the zones.
