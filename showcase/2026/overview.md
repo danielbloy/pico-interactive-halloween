@@ -14,3 +14,18 @@ her together. These are all in the cabin ready to be put outside.
 ![Week before - Image 1](25_10_2026_01.jpg)
 
 ## The big day, Saturday 31st October
+
+A few pictures of my daughter and I setting up. The images are of the
+Graveyard, pumpkin patch and witches house.
+
+![Halloween - Image 1](31_10_2026_01.jpg)
+
+![Halloween - Image 2](31_10_2026_02.jpg)
+
+![Halloween - Image 3](31_10_2026_03.jpg)
+
+![Halloween - Image 4](31_10_2026_04.jpg)
+
+![Halloween - Image 5](31_10_2026_05.jpg)
+
+![Halloween - Image 6](31_10_2026_06.jpg)
